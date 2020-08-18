@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "get"
  *     }
  * )
+ * @ApiFilter(SearchFilter::class, properties={"slug": "exact"})
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
  */
 class Project
