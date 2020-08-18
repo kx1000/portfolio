@@ -2,11 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ContentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get"
+ *     },
+ *     itemOperations={
+ *         "get"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=ContentRepository::class)
  */
 class Content
