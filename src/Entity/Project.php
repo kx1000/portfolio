@@ -52,6 +52,13 @@ class Project
      */
     private $animation;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(max=255)
+     * @Assert\NotNull
+     */
+    private $slug;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,6 +108,18 @@ class Project
     public function setAnimation(?string $animation): self
     {
         $this->animation = $animation;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
