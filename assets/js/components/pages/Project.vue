@@ -1,29 +1,43 @@
 <template>
 <div>
   <router-link to="/projects" class="back">< powrót</router-link>
-  <h1>
-    <vue-typer text="Projekt 1" :repeat="0"></vue-typer>
-  </h1>
-  <div class="project-grid">
-    <div>
-      <img src="/assets/img/Cakeshop-compressed.gif">
-    </div>
-    <div>
-      Prosty system e-commerce.
-      [opisać funkcje]
-      [opisać panel admina]
-      Projekt wykonany na potrzeby pracy inżynierskiej.
-      Mój pierwszy projekt w Symfony.
+  <div v-if="null !== project">
+    <h1>
+      <vue-typer :text="project.title" :repeat="0"></vue-typer>
+    </h1>
+    <div class="project-grid">
+      <div>
+        <img v-if="project.animation" :src="project.animation">
+        <img v-else-if="project.image" :src="project.image">
+      </div>
+      <div>
+        {{ project.body }}
+      </div>
     </div>
   </div>
-
-  <h2>{{ $route.params.slug }}</h2>
+  <div v-else>
+    :(
+  </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: "Project"
+  name: "Project",
+  data() {
+    return {
+      project: null,
+    }
+  },
+  mounted() {
+    axios.get('/api/projects.json?slug=' + this.$route.params.slug)
+        .then(res => {
+          if (undefined !== res.data[0]) this.project = res.data[0]
+        })
+        .catch(error => console.log(error))
+  }
 }
 </script>
 
