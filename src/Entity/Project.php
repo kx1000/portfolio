@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource(
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ApiFilter(SearchFilter::class, properties={"slug": "exact"})
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
+ * @Vich\Uploadable()
  */
 class Project
 {
@@ -50,10 +52,20 @@ class Project
     private $image;
 
     /**
+     * @Vich\UploadableField(mapping="projects_images", fileNameProperty="image")
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
      */
     private $animation;
+
+    /**
+     * @Vich\UploadableField(mapping="projects_animations", fileNameProperty="animation")
+     */
+    private $animationFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -61,6 +73,17 @@ class Project
      * @Assert\NotNull
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\Type("DateTime")
+     */
+    private $vichUpdatedAt;
+
+    public function __construct()
+    {
+        $this->vichUpdatedAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -123,6 +146,58 @@ class Project
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param mixed $imageFile
+     */
+    public function setImageFile($imageFile): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->setVichUpdatedAt(new \DateTime());
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAnimationFile()
+    {
+        return $this->animationFile;
+    }
+
+    /**
+     * @param mixed $animationFile
+     */
+    public function setAnimationFile($animationFile): void
+    {
+        $this->animationFile = $animationFile;
+
+        if (null !== $animationFile) {
+            $this->setVichUpdatedAt(new \DateTime());
+        }
+    }
+
+    public function getVichUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->vichUpdatedAt;
+    }
+
+    public function setVichUpdatedAt(\DateTimeInterface $vichUpdatedAt): self
+    {
+        $this->vichUpdatedAt = $vichUpdatedAt;
 
         return $this;
     }
