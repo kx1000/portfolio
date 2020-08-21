@@ -10,9 +10,7 @@
         <img v-if="project.animation" :src="project.animation">
         <img v-else-if="project.image" :src="project.image">
       </div>
-      <div>
-        {{ project.body }}
-      </div>
+      <div v-html="project.body"></div>
     </div>
   </div>
   <div v-else>
