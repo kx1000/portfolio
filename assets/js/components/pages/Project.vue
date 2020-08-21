@@ -6,9 +6,9 @@
       <vue-typer :text="project.title" :repeat="0"></vue-typer>
     </h1>
     <div class="project-grid">
-      <div>
-        <img v-if="project.animation" :src="project.animation">
-        <img v-else-if="project.image" :src="project.image">
+      <div class="image-container">
+        <img v-if="project.animation" :src="'/projects/animations/' + project.animation">
+        <img v-else-if="project.image" :src="'/projects/images/' + project.image">
       </div>
       <div v-html="project.body"></div>
     </div>
@@ -39,18 +39,25 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .project-grid {
   align-items: center;
   display: grid;
   grid-template-rows: auto;
-  display: grid;
   grid-gap: 1em;
-  grid-template-rows: auto;
   grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 3), 1fr) );
 }
 
 .back {
   float: right;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-height: 400px;
+  width: auto;
 }
 </style>

@@ -27,13 +27,15 @@
         </fieldset>
       </form>
       <div v-else>
-        sent :)
+        {{ sentConfirmationData.body }}
       </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+const SENT_CONTENT_NAME = 'sent';
 
 export default {
   name: "Contact",
@@ -43,6 +45,10 @@ export default {
       isError: false,
       data: {
         email: null,
+        title: null,
+        body: null,
+      },
+      sentConfirmationData: {
         title: null,
         body: null,
       },
@@ -63,6 +69,13 @@ export default {
           console.log(error);
         })
     }
+  },
+  mounted() {
+    axios.get('/api/contents.json?name=' + SENT_CONTENT_NAME)
+        .then(res => {
+          if (undefined !== res.data[0]) this.sentConfirmationData = res.data[0]
+        })
+        .catch(error => console.log(error))
   }
 }
 </script>

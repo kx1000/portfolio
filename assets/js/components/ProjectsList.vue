@@ -3,9 +3,9 @@
     <h1>
       <vue-typer text="Projekty" :repeat="0"></vue-typer>
     </h1>
-    <div v-for="project in projects" class="image-grid">
-      <router-link :to="'/projects/' + project.slug">
-        <img v-if="project.image" :src="project.image" :alt="project.title" width="auto" height="auto">
+    <div class="image-grid">
+      <router-link v-for="project in projects" :to="'/projects/' + project.slug">
+        <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
         {{ project.title }}
       </router-link>
     </div>
@@ -29,3 +29,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.image-grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-gap: 1em;
+  grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 12), 1fr) );
+}
+</style>
