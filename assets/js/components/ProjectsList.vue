@@ -4,7 +4,7 @@
       <vue-typer text="Projekty" :repeat="0"></vue-typer>
     </h1>
     <div class="image-grid">
-      <router-link v-for="project in projects" :to="'/projects/' + project.slug">
+      <router-link v-for="project in projects" v-bind:key="project.id" :to="'/projects/' + project.slug">
         <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
         {{ project.title }}
       </router-link>

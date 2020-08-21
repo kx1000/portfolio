@@ -1,8 +1,9 @@
 <template>
   <div>
     <h1>
-      <vue-typer text="Kontakt" :repeat="0"></vue-typer>
+      <vue-typer :text="contactData.title" :repeat="0"></vue-typer>
     </h1>
+    <div v-html="contactData.body" class="terminal-alert"></div>
     <div v-if="isError" class="terminal-alert terminal-alert-error">
       Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>kacper.rogula@gmail.com</b>.
     </div>
@@ -35,6 +36,7 @@
 <script>
 import axios from 'axios'
 
+const CONTACT_CONTENT_NAME = 'contact';
 const SENT_CONTENT_NAME = 'sent';
 
 export default {
@@ -45,6 +47,10 @@ export default {
       isError: false,
       data: {
         email: null,
+        title: null,
+        body: null,
+      },
+      contactData: {
         title: null,
         body: null,
       },
@@ -71,6 +77,12 @@ export default {
     }
   },
   mounted() {
+    axios.get('/api/contents.json?name=' + CONTACT_CONTENT_NAME)
+        .then(res => {
+          if (undefined !== res.data[0]) this.contactData = res.data[0]
+        })
+        .catch(error => console.log(error))
+
     axios.get('/api/contents.json?name=' + SENT_CONTENT_NAME)
         .then(res => {
           if (undefined !== res.data[0]) this.sentConfirmationData = res.data[0]
