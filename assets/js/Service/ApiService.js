@@ -1,10 +1,12 @@
 import axios from "axios";
 
 export const contentNames = {
-    CONTACT_CONTENT_NAME: 'contact',
-    SENT_CONTENT_NAME: 'sent',
-    ABOUT_CONTENT_NAME: 'about',
-    PROJECTS_CONTENT_NAME: 'projects',
+    CONTACT: 'contact',
+    SENT: 'sent',
+    ABOUT: 'about',
+    PROJECTS: 'projects',
+    HEADER: 'header',
+    FOOTER: 'footer',
 }
 
 class ApiServiceClass

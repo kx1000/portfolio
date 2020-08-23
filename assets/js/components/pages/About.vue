@@ -24,7 +24,7 @@ export default {
   },
   mounted() {
     ApiService
-        .fetchContent(contentNames.ABOUT_CONTENT_NAME)
+        .fetchContent(contentNames.ABOUT)
         .then(data => this.pageContent = data)
   }
 }

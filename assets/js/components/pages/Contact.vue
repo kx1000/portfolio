@@ -71,11 +71,11 @@ export default {
   },
   mounted() {
     ApiService
-        .fetchContent(contentNames.CONTACT_CONTENT_NAME)
+        .fetchContent(contentNames.CONTACT)
         .then(data => this.pageContent = data);
 
     ApiService
-        .fetchContent(contentNames.SENT_CONTENT_NAME)
+        .fetchContent(contentNames.SENT)
         .then(data => this.sentConfirmationData = data);
   }
 }

@@ -32,7 +32,7 @@ export default {
     .catch(error => console.log(error))
 
     ApiService
-        .fetchContent(contentNames.PROJECTS_CONTENT_NAME)
+        .fetchContent(contentNames.PROJECTS)
         .then(data => this.pageContent = data)
   }
 }
