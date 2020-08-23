@@ -1,18 +1,32 @@
 <template>
   <div>
     <h1>
-      <vue-typer text="O mnie" :repeat="0"></vue-typer>
+      <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
     </h1>
     <div>
-      :)
-      kek
+      {{ pageContent.body }}
     </div>
   </div>
 </template>
 
 <script>
+import ContentObject from "../../Object/ContentObject";
+import {ApiService, contentNames} from "../../Service/ApiService";
+
+const CONTENT_ABOUT_NAME = 'about';
+
 export default {
-  name: "About"
+  name: "About",
+  data () {
+    return {
+      pageContent: new ContentObject(),
+    }
+  },
+  mounted() {
+    ApiService
+        .fetchContent(contentNames.ABOUT)
+        .then(data => this.pageContent = data)
+  }
 }
 </script>
 

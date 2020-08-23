@@ -3,7 +3,12 @@
     <div class="container">
       <div class="terminal-nav">
         <div class="terminal-logo">
-          <div class="logo terminal-prompt"><router-link class="no-style" to="/">Kacper Rogula</router-link></div>
+          <div class="logo terminal-prompt">
+            <router-link class="no-style" to="/">
+              {{ headerData.title }}
+            </router-link>
+          </div>
+          {{ headerData.body }}
         </div>
         <nav class="terminal-menu">
           <ul>
@@ -22,7 +27,7 @@
       </transition>
       <hr>
       <div class="center">
-        Kacper Rogula 2020 <a href="" target="_blank">źródło strony</a>
+        {{ footerData.title }} <span v-html="footerData.body"/>
       </div>
     </div>
   </div>
@@ -30,6 +35,8 @@
 
 <script>
 import DarkModeSwitch from "./components/DarkModeSwitch";
+import ContentObject from "./Object/ContentObject";
+import {ApiService, contentNames} from "./Service/ApiService";
 
 const NEXT_TRANSITION = 'slide-left';
 const PREVIOUS_TRANSITION = 'slide-right';
@@ -40,6 +47,8 @@ export default {
   data () {
     return {
       transitionName: NEXT_TRANSITION,
+      footerData: new ContentObject(),
+      headerData: new ContentObject(),
     }
   },
   watch: {
@@ -48,6 +57,15 @@ export default {
       const toOrder = to.meta.order;
       this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
     }
+  },
+  mounted() {
+    ApiService
+        .fetchContent(contentNames.HEADER)
+        .then(data => this.headerData = data)
+
+    ApiService
+        .fetchContent(contentNames.FOOTER)
+        .then(data => this.footerData = data)
   }
 }
 </script>

@@ -9,7 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
- *     itemOperations={},
+ *     itemOperations={
+ *         "get"={"security"="is_granted('ROLE_USER')"}
+ *     },
  *     collectionOperations={
  *         "post"
  *     }

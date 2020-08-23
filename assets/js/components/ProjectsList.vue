@@ -1,23 +1,48 @@
 <template>
   <div>
     <h1>
-      <vue-typer text="Projekty" :repeat="0"></vue-typer>
+      <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
     </h1>
+    <div class="terminal-alert" v-html="pageContent.body" />
     <div class="image-grid">
-      <router-link to="/projects/asd">jakiś projekt</router-link>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;1" alt="random image" width="auto" height="auto">asd</a>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;2" alt="random image" width="auto" height="auto">dasdasdasdas asd sad asdasd </a>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;3" alt="random image" width="auto" height="auto">kodaskosdakoasd asokads</a>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;4" alt="random image" width="auto" height="auto">sad  asddsa</a>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;5" alt="random image" width="auto" height="auto">sdaasd dsd</a>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;6" alt="random image" width="auto" height="auto">asdsad</a>
-      <a href="https://picsum.photos" style="border: none;"><img src="https://picsum.photos/200/300?random&amp;7" alt="random image" width="auto" height="auto">żźż®ęłę∑Ō</a>
+      <router-link v-for="project in projects" v-bind:key="project.id" :to="'/projects/' + project.slug">
+        <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
+        {{ project.title }}
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import ContentObject from "../Object/ContentObject";
+import {ApiService, contentNames} from "../Service/ApiService";
+
 export default {
   name: "ProjectsList",
+  data() {
+    return {
+      projects: [],
+      pageContent: new ContentObject(),
+    }
+  },
+  mounted() {
+    axios.get('/api/projects.json')
+    .then(res => this.projects = res.data)
+    .catch(error => console.log(error))
+
+    ApiService
+        .fetchContent(contentNames.PROJECTS)
+        .then(data => this.pageContent = data)
+  }
 }
 </script>
+
+<style scoped>
+.image-grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-gap: 1em;
+  grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 12), 1fr) );
+}
+</style>
