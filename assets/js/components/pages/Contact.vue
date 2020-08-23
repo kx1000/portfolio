@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>
-      <vue-typer :text="contactData.title" :repeat="0"></vue-typer>
+      <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
     </h1>
-    <div v-html="contactData.body" class="terminal-alert"></div>
+    <div v-html="pageContent.body" class="terminal-alert"></div>
     <div v-if="isError" class="terminal-alert terminal-alert-error">
       Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>kacper.rogula@gmail.com</b>.
     </div>
@@ -49,7 +49,7 @@ export default {
         title: null,
         body: null,
       },
-      contactData: new ContentObject,
+      pageContent: new ContentObject,
       sentConfirmationData: new ContentObject,
     }
   },
@@ -72,7 +72,7 @@ export default {
   mounted() {
     ApiService
         .fetchContent(contentNames.CONTACT_CONTENT_NAME)
-        .then(data => this.contactData = data);
+        .then(data => this.pageContent = data);
 
     ApiService
         .fetchContent(contentNames.SENT_CONTENT_NAME)

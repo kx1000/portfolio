@@ -1,16 +1,17 @@
 <template>
   <div>
     <h1>
-      <vue-typer :text="data.title" :repeat="0"></vue-typer>
+      <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
     </h1>
     <div>
-      {{ data.body }}
+      {{ pageContent.body }}
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import ContentObject from "../../Object/ContentObject";
+import {ApiService, contentNames} from "../../Service/ApiService";
 
 const CONTENT_ABOUT_NAME = 'about';
 
@@ -18,18 +19,13 @@ export default {
   name: "About",
   data () {
     return {
-      data: {
-        title: null,
-        body: null,
-      },
+      pageContent: new ContentObject(),
     }
   },
   mounted() {
-    axios.get('/api/contents.json?name=' + CONTENT_ABOUT_NAME)
-        .then(res => {
-          if (undefined !== res.data[0]) this.data = res.data[0]
-        })
-        .catch(error => console.log(error))
+    ApiService
+        .fetchContent(contentNames.ABOUT_CONTENT_NAME)
+        .then(data => this.pageContent = data)
   }
 }
 </script>
