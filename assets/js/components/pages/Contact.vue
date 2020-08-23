@@ -35,9 +35,8 @@
 
 <script>
 import axios from 'axios'
-
-const CONTACT_CONTENT_NAME = 'contact';
-const SENT_CONTENT_NAME = 'sent';
+import ContentObject from '../../Object/ContentObject'
+import {contentNames, ApiService} from '../../Service/ApiService'
 
 export default {
   name: "Contact",
@@ -50,14 +49,8 @@ export default {
         title: null,
         body: null,
       },
-      contactData: {
-        title: null,
-        body: null,
-      },
-      sentConfirmationData: {
-        title: null,
-        body: null,
-      },
+      contactData: new ContentObject,
+      sentConfirmationData: new ContentObject,
     }
   },
   methods: {
@@ -77,21 +70,13 @@ export default {
     }
   },
   mounted() {
-    axios.get('/api/contents.json?name=' + CONTACT_CONTENT_NAME)
-        .then(res => {
-          if (undefined !== res.data[0]) this.contactData = res.data[0]
-        })
-        .catch(error => console.log(error))
+    ApiService
+        .fetchContent(contentNames.CONTACT_CONTENT_NAME)
+        .then(data => this.contactData = data);
 
-    axios.get('/api/contents.json?name=' + SENT_CONTENT_NAME)
-        .then(res => {
-          if (undefined !== res.data[0]) this.sentConfirmationData = res.data[0]
-        })
-        .catch(error => console.log(error))
+    ApiService
+        .fetchContent(contentNames.SENT_CONTENT_NAME)
+        .then(data => this.sentConfirmationData = data);
   }
 }
 </script>
-
-<style scoped>
-
-</style>
