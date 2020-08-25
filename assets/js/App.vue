@@ -5,10 +5,10 @@
         <div class="terminal-logo">
           <div class="logo terminal-prompt">
             <router-link class="no-style" to="/">
-              {{ headerData.title }}
+              {{ header.title }}
             </router-link>
           </div>
-          {{ headerData.body }}
+          {{ header.body }}
         </div>
         <nav class="terminal-menu">
           <ul>
@@ -27,7 +27,7 @@
       </transition>
       <hr>
       <div class="center">
-        {{ footerData.title }} <span v-html="footerData.body"/>
+        {{ footer.title }} <span v-html="footer.body"/>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
 <script>
 import DarkModeSwitch from "./components/DarkModeSwitch";
 import ContentObject from "./Object/ContentObject";
-import {ApiService, contentNames} from "./Service/ApiService";
+import {mapState} from 'vuex'
 
 const NEXT_TRANSITION = 'slide-left';
 const PREVIOUS_TRANSITION = 'slide-right';
@@ -48,7 +48,6 @@ export default {
     return {
       transitionName: NEXT_TRANSITION,
       footerData: new ContentObject(),
-      headerData: new ContentObject(),
     }
   },
   watch: {
@@ -59,13 +58,14 @@ export default {
     }
   },
   mounted() {
-    ApiService
-        .fetchContent(contentNames.HEADER)
-        .then(data => this.headerData = data)
-
-    ApiService
-        .fetchContent(contentNames.FOOTER)
-        .then(data => this.footerData = data)
+    this.$store.dispatch('loadHeader')
+    this.$store.dispatch('loadFooter')
+  },
+  computed: {
+    ...mapState([
+        'header',
+        'footer'
+    ])
   }
 }
 </script>
