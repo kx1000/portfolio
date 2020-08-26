@@ -1,4 +1,5 @@
 import axios from "axios";
+import {mapState} from "vuex";
 
 export const contentNames = {
     CONTACT: 'contact',

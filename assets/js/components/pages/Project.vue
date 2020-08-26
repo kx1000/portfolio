@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {mapState} from "vuex";
 
 export default {
   name: "Project",
@@ -29,12 +29,25 @@ export default {
       project: null,
     }
   },
+  methods: {
+    getCurrentProject() {
+      let result;
+      this.projects.forEach((project) => {
+        if (this.$route.params.slug === project.slug) {
+          result = project;
+        }
+      });
+
+      return result;
+    }
+  },
   mounted() {
-    axios.get('/api/projects.json?slug=' + this.$route.params.slug)
-        .then(res => {
-          if (undefined !== res.data[0]) this.project = res.data[0]
-        })
-        .catch(error => console.log(error))
+    this.project = this.getCurrentProject();
+  },
+  computed: {
+    ...mapState([
+      'projects',
+    ])
   }
 }
 </script>
