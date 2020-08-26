@@ -3,12 +3,12 @@
     <h1>
       <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
     </h1>
-    <div v-html="pageContent.body" class="terminal-alert"></div>
-    <div v-if="isError" class="terminal-alert terminal-alert-error">
-      Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>kacper.rogula@gmail.com</b>.
-    </div>
     <form v-if="false === isSent" @submit.prevent="onSubmit">
-        <fieldset>
+      <div v-html="pageContent.body" class="terminal-alert"></div>
+      <div v-if="isError" class="terminal-alert terminal-alert-error">
+        Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>kacper.rogula@gmail.com</b>.
+      </div>
+      <fieldset>
           <legend>Formularz kontaktowy</legend>
           <div class="form-group">
             <label for="email">Email:</label>
@@ -28,7 +28,9 @@
         </fieldset>
       </form>
       <div v-else>
-        {{ sentConfirmationData.body }}
+        <div class="terminal-alert terminal-alert-primary">
+          {{ sentConfirmationData.body }}
+        </div>
       </div>
   </div>
 </template>
