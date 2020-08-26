@@ -1,17 +1,17 @@
 <template>
   <div>
     <h1>
-      <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
+      <vue-typer :text="about.title" :repeat="0"></vue-typer>
     </h1>
     <div>
-      {{ pageContent.body }}
+      {{ about.body }}
     </div>
   </div>
 </template>
 
 <script>
 import ContentObject from "../../Object/ContentObject";
-import {ApiService, contentNames} from "../../Service/ApiService";
+import {mapState} from "vuex";
 
 const CONTENT_ABOUT_NAME = 'about';
 
@@ -22,14 +22,10 @@ export default {
       pageContent: new ContentObject(),
     }
   },
-  mounted() {
-    ApiService
-        .fetchContent(contentNames.ABOUT)
-        .then(data => this.pageContent = data)
+  computed: {
+    ...mapState([
+      'about'
+    ])
   }
 }
 </script>
-
-<style scoped>
-
-</style>

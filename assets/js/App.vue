@@ -60,6 +60,7 @@ export default {
   mounted() {
     this.$store.dispatch('loadHeader')
     this.$store.dispatch('loadFooter')
+    this.$store.dispatch('loadAbout')
   },
   computed: {
     ...mapState([

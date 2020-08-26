@@ -9,6 +9,11 @@ export default new vuex.Store({
     state: {
         header: '',
         footer: '',
+        about: '',
+        projectsList: '',
+        contact: '',
+        sentConfirmation: '',
+        projects: [],
     },
     actions: {
         loadHeader({commit}) {
@@ -20,6 +25,16 @@ export default new vuex.Store({
             ApiService
                 .fetchContent(contentNames.FOOTER)
                 .then(data => commit('SET_FOOTER', data))
+        },
+        loadAbout({commit}) {
+            ApiService
+                .fetchContent(contentNames.ABOUT)
+                .then(data => commit('SET_ABOUT', data))
+        },
+        loadProjectsList({commit}) {
+            ApiService
+                .fetchContent(contentNames.PROJECTS)
+                .then(data => commit('SET_PROJECTS_LIST', data))
         }
     },
     mutations: {
@@ -28,6 +43,22 @@ export default new vuex.Store({
         },
         SET_FOOTER (state, data) {
             state.footer = data
+        },
+        SET_ABOUT (state, data) {
+            state.about = data
+        },
+        SET_PROJECTS_LIST (state, data) {
+            state.projectsList = data
+        },
+        SET_CONTACT (state, data) {
+            state.contact = data
+        },
+        SET_SENT_CONFIRMATION (state, data) {
+            state.sentConfirmation = data
+        },
+        SET_PROJECTS (state, data) {
+            state.projects = data
         }
+
     }
 })
