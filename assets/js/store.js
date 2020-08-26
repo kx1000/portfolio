@@ -35,6 +35,21 @@ export default new vuex.Store({
             ApiService
                 .fetchContent(contentNames.PROJECTS)
                 .then(data => commit('SET_PROJECTS_LIST', data))
+        },
+        loadContact({commit}) {
+            ApiService
+                .fetchContent(contentNames.CONTACT)
+                .then(data => commit('SET_CONTACT', data))
+        },
+        loadSentConfirmation({commit}) {
+            ApiService
+                .fetchContent(contentNames.SENT)
+                .then(data => commit('SET_SENT_CONFIRMATION', data))
+        },
+        loadProjects({commit}) {
+            ApiService
+                .fetchProjects()
+                .then(data => commit('SET_PROJECTS', data))
         }
     },
     mutations: {
@@ -59,6 +74,5 @@ export default new vuex.Store({
         SET_PROJECTS (state, data) {
             state.projects = data
         }
-
     }
 })

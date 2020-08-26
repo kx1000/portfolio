@@ -18,6 +18,14 @@ class ApiServiceClass
             })
             .catch(error => console.log(error));
     }
+
+    fetchProjects() {
+        return axios.get('/api/projects.json')
+            .then(res => {
+                if (undefined !== res.data[0]) return res.data
+            })
+            .catch(error => console.log(error));
+    }
 }
 
 export const ApiService = new ApiServiceClass();
