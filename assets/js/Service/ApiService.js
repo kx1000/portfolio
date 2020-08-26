@@ -22,7 +22,7 @@ class ApiServiceClass
     fetchProjects() {
         return axios.get('/api/projects.json')
             .then(res => {
-                if (undefined !== res.data[0]) return res.data
+                return res.data
             })
             .catch(error => console.log(error));
     }

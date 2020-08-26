@@ -61,6 +61,8 @@ export default {
     this.$store.dispatch('loadHeader')
     this.$store.dispatch('loadFooter')
     this.$store.dispatch('loadAbout')
+    this.$store.dispatch('loadProjectsList')
+    this.$store.dispatch('loadProjects')
   },
   computed: {
     ...mapState([
