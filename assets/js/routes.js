@@ -5,11 +5,11 @@ import Project from "./components/pages/Project";
 import ProjectsList from "./components/ProjectsList";
 
 export const routes = [
-    { path: '/', component: About, meta: { order: 1 } },
+    { path: '/', name: 'about', component: About, meta: { order: 1 } },
     { path: '/projects', component: Projects,
         children: [
-            { path: ':slug', component: Project },
             { path: '', component: ProjectsList, meta: {order: 2} },
+            { path: ':slug', component: Project },
         ]
     },
     { path: '/contact', component: Contact, meta: { order: 3 } },

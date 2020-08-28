@@ -1,4 +1,5 @@
 import axios from "axios";
+import {mapState} from "vuex";
 
 export const contentNames = {
     CONTACT: 'contact',
@@ -15,6 +16,14 @@ class ApiServiceClass
         return axios.get('/api/contents.json?name=' + contentName)
             .then(res => {
                 if (undefined !== res.data[0]) return res.data[0]
+            })
+            .catch(error => console.log(error));
+    }
+
+    fetchProjects() {
+        return axios.get('/api/projects.json')
+            .then(res => {
+                return res.data
             })
             .catch(error => console.log(error));
     }
