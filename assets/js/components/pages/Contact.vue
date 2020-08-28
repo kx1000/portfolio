@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>
-      <vue-typer :text="pageContent.title" :repeat="0"></vue-typer>
+      <vue-typer :text="contact.title" :repeat="0"></vue-typer>
     </h1>
     <form v-if="false === isSent" @submit.prevent="onSubmit">
-      <div v-html="pageContent.body" class="terminal-alert"></div>
+      <div v-html="contact.body" class="terminal-alert"></div>
       <div v-if="isError" class="terminal-alert terminal-alert-error">
         Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>kacper.rogula@gmail.com</b>.
       </div>
@@ -29,7 +29,7 @@
       </form>
       <div v-else>
         <div class="terminal-alert terminal-alert-primary">
-          {{ sentConfirmationData.body }}
+          {{ sentConfirmation.body }}
         </div>
       </div>
   </div>
@@ -38,7 +38,7 @@
 <script>
 import axios from 'axios'
 import ContentObject from '../../Object/ContentObject'
-import {contentNames, ApiService} from '../../Service/ApiService'
+import {mapState} from "vuex";
 
 export default {
   name: "Contact",
@@ -71,14 +71,11 @@ export default {
         })
     }
   },
-  mounted() {
-    ApiService
-        .fetchContent(contentNames.CONTACT)
-        .then(data => this.pageContent = data);
-
-    ApiService
-        .fetchContent(contentNames.SENT)
-        .then(data => this.sentConfirmationData = data);
+  computed: {
+    ...mapState([
+      'contact',
+      'sentConfirmation',
+    ])
   }
 }
 </script>
