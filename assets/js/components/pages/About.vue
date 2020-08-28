@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import ContentObject from "../../Object/ContentObject";
 import {mapState} from "vuex";
 
 const CONTENT_ABOUT_NAME = 'about';
@@ -19,7 +18,6 @@ export default {
   name: "About",
   data () {
     return {
-      pageContent: new ContentObject(),
     }
   },
   computed: {

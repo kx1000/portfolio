@@ -14,14 +14,12 @@
 </template>
 
 <script>
-import ContentObject from "../Object/ContentObject";
 import {mapState} from "vuex";
 
 export default {
   name: "ProjectsList",
   data() {
     return {
-      pageContent: new ContentObject(),
     }
   },
   computed: {

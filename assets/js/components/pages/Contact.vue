@@ -37,7 +37,6 @@
 
 <script>
 import axios from 'axios'
-import ContentObject from '../../Object/ContentObject'
 import {mapState} from "vuex";
 
 export default {
@@ -51,8 +50,6 @@ export default {
         title: null,
         body: null,
       },
-      pageContent: new ContentObject,
-      sentConfirmationData: new ContentObject,
     }
   },
   methods: {
