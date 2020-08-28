@@ -11,6 +11,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import 'terminal.css'
+import 'animate.css'
 import '../css/app.css';
 
 library.add(fas);

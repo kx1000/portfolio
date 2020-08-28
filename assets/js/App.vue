@@ -1,42 +1,42 @@
 <template>
   <div id="app" class="terminal">
-    <div v-if="actionsCount === contentsLoadedCount">
-      <div class="container">
-        <div class="terminal-nav">
-          <div class="terminal-logo">
-            <div class="logo terminal-prompt">
-              <router-link class="no-style" to="/">
-                {{ header.title }}
-              </router-link>
+      <div v-if="actionsCount === contentsLoadedCount" class="animate__animated animate__zoomInDown">
+        <div class="container">
+          <div class="terminal-nav">
+            <div class="terminal-logo">
+              <div class="logo terminal-prompt">
+                <router-link class="no-style" to="/">
+                  {{ header.title }}
+                </router-link>
+              </div>
+              {{ header.body }}
             </div>
-            {{ header.body }}
+            <nav class="terminal-menu">
+              <ul>
+                <li><dark-mode-switch /></li>
+                <li><router-link to="/" exact>O mnie</router-link></li>
+                <li><router-link to="/projects">Projekty</router-link></li>
+                <li><router-link to="/contact">Kontakt</router-link></li>
+              </ul>
+            </nav>
           </div>
-          <nav class="terminal-menu">
-            <ul>
-              <li><dark-mode-switch /></li>
-              <li><router-link to="/" exact>O mnie</router-link></li>
-              <li><router-link to="/projects">Projekty</router-link></li>
-              <li><router-link to="/contact">Kontakt</router-link></li>
-            </ul>
-          </nav>
+        </div>
+        <div class="container">
+          <hr>
+          <transition :name="transitionName" mode="out-in">
+            <router-view></router-view>
+          </transition>
+          <hr>
+          <div class="center">
+            {{ footer.title }} <span v-html="footer.body"/>
+          </div>
         </div>
       </div>
-      <div class="container">
-        <hr>
-        <transition :name="transitionName" mode="out-in">
-          <router-view></router-view>
-        </transition>
-        <hr>
-        <div class="center">
-          {{ footer.title }} <span v-html="footer.body"/>
+      <div v-else>
+        <div class="progress-bar progress-bar-no-arrow">
+          <div class="progress-bar-filled" :style="getLoadingProgress()"></div>
         </div>
       </div>
-    </div>
-    <div v-else>
-      <div class="progress-bar progress-bar-no-arrow">
-        <div class="progress-bar-filled" :style="getLoadingProgress()"></div>
-      </div>
-    </div>
   </div>
 </template>
 
