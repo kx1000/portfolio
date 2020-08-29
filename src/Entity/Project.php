@@ -17,7 +17,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *     },
  *     itemOperations={
  *         "get"
- *     }
+ *     },
+ *     attributes={"order"={"listOrder": "ASC"}}
  * )
  * @ApiFilter(SearchFilter::class, properties={"slug": "exact"})
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -79,6 +80,11 @@ class Project
      * @Assert\Type("DateTime")
      */
     private $vichUpdatedAt;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $listOrder;
 
     public function __construct()
     {
@@ -198,6 +204,18 @@ class Project
     public function setVichUpdatedAt(\DateTimeInterface $vichUpdatedAt): self
     {
         $this->vichUpdatedAt = $vichUpdatedAt;
+
+        return $this;
+    }
+
+    public function getListOrder(): ?int
+    {
+        return $this->listOrder;
+    }
+
+    public function setListOrder(?int $listOrder): self
+    {
+        $this->listOrder = $listOrder;
 
         return $this;
     }
