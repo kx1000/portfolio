@@ -27,7 +27,7 @@
           </div>
         </fieldset>
       </form>
-      <div v-else>
+      <div v-else class="animate__animated animate__tada">
         <div class="terminal-alert terminal-alert-primary">
           {{ sentConfirmation.body }}
         </div>
