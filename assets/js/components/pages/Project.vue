@@ -103,10 +103,11 @@ export default {
 
 .image-container img {
   max-height: 400px;
-  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-img:hover {
+.image-container img:hover {
   cursor: pointer;
 }
 

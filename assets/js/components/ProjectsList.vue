@@ -38,4 +38,9 @@ export default {
   grid-gap: 1em;
   grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 12), 1fr) );
 }
+
+.image-grid a img {
+  object-fit: cover;
+  height: 300px;
+}
 </style>
