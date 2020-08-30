@@ -13,7 +13,7 @@ class LinkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('icon')
+            ->add('icon', null, ['help' => 'format: fab amazon'])
             ->add('title')
             ->add('url', UrlType::class)
         ;

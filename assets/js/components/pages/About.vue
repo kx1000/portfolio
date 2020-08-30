@@ -12,8 +12,6 @@
 <script>
 import {mapState} from "vuex";
 
-const CONTENT_ABOUT_NAME = 'about';
-
 export default {
   name: "About",
   data () {

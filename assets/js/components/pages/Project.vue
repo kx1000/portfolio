@@ -15,7 +15,14 @@
             @hide="handleHideModal"
         ></vue-easy-lightbox>
       </div>
-      <div v-html="project.body"></div>
+      <div>
+        <div v-html="project.body"></div>
+        <div class="links">
+          <a v-for="link in project.links" :href="link.url" target="_blank">
+            <font-awesome-icon :icon="getLinkIcon(link.icon)" /> {{ link.title }}
+          </a>
+        </div>
+      </div>
     </div>
   </div>
   <div v-else>
@@ -30,6 +37,8 @@ import VueEasyLightbox from 'vue-easy-lightbox'
 
 const ANIMATIONS_PATH = '/projects/animations/';
 const IMAGES_PATH = '/projects/images/';
+
+const DEFAULT_LINK_ICON = 'link';
 
 export default {
   name: "Project",
@@ -53,6 +62,13 @@ export default {
 
         this.imageUrl = IMAGES_PATH + this.project.image
       }
+    },
+    getLinkIcon(icon) {
+      if (null === icon) {
+        return DEFAULT_LINK_ICON;
+      }
+      let fontawesomeFormatArr = icon.split(" ");
+      return [fontawesomeFormatArr[0], fontawesomeFormatArr[1]];
     },
     showImageModal() {
       this.imgModalVisible = true;
@@ -113,5 +129,9 @@ export default {
 
 .vel-modal {
   height: 100vh;
+}
+
+.links {
+  margin-top: 10px;
 }
 </style>
