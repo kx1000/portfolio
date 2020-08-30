@@ -7,8 +7,13 @@
     </h1>
     <div class="project-grid">
       <div class="image-container">
-        <img v-if="project.animation" :src="'/projects/animations/' + project.animation">
-        <img v-else-if="project.image" :src="'/projects/images/' + project.image">
+        <img @click="showImageModal" :src="imageUrl">
+        <vue-easy-lightbox
+            moveDisabled
+            :visible="imgModalVisible"
+            :imgs="imageUrl"
+            @hide="handleHideModal"
+        ></vue-easy-lightbox>
       </div>
       <div v-html="project.body"></div>
     </div>
@@ -21,15 +26,40 @@
 
 <script>
 import {mapState} from "vuex";
+import VueEasyLightbox from 'vue-easy-lightbox'
+
+const ANIMATIONS_PATH = '/projects/animations/';
+const IMAGES_PATH = '/projects/images/';
 
 export default {
   name: "Project",
+  components: {
+    VueEasyLightbox
+  },
   data() {
     return {
       project: null,
+      imgModalVisible: false,
+      imageUrl: null,
     }
   },
   methods: {
+    updateImageUrl() {
+      if (this.project.animation || this.project.image) {
+        if (this.project.animation) {
+          this.imageUrl = ANIMATIONS_PATH + this.project.animation
+          return;
+        }
+
+        this.imageUrl = IMAGES_PATH + this.project.image
+      }
+    },
+    showImageModal() {
+      this.imgModalVisible = true;
+    },
+    handleHideModal() {
+      this.imgModalVisible = false;
+    },
     getCurrentProject() {
       let result;
       this.projects.forEach((project) => {
@@ -43,6 +73,7 @@ export default {
   },
   mounted() {
     this.project = this.getCurrentProject();
+    this.updateImageUrl();
   },
   computed: {
     ...mapState([
@@ -54,6 +85,7 @@ export default {
 
 <style scoped>
 .project-grid {
+  height: 100%;
   align-items: center;
   display: grid;
   grid-template-rows: auto;
@@ -72,5 +104,13 @@ export default {
 .image-container img {
   max-height: 400px;
   width: auto;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.vel-modal {
+  height: 100vh;
 }
 </style>
