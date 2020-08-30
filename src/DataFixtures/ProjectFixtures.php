@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Link;
 use App\Entity\Project;
+use App\Entity\Technology;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -20,6 +21,10 @@ class ProjectFixtures extends Fixture
                     ->setIcon('fab amazon')
                     ->setTitle('amazon')
                     ->setUrl('https://amazon.com')
+            )
+            ->addTechnology(
+                (new Technology())
+                    ->setName('PHP')
             )
             ;
         $manager->persist($project1);
