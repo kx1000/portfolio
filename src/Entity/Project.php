@@ -2,21 +2,30 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource(
+ *     normalizationContext={"groups"={"read_project"}},
  *     collectionOperations={
  *         "get"
  *     },
  *     itemOperations={
- *         "get"
+ *         "get"={
+ *             "controller"=NotFoundAction::class,
+ *             "read"=false,
+ *             "output"=false,
+ *         },
  *     },
  *     attributes={"order"={"listOrder": "ASC"}}
  * )
@@ -37,18 +46,21 @@ class Project
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(max=255)
      * @Assert\NotNull
+     * @Groups("read_project")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Assert\Length(max=1500)
+     * @Groups("read_project")
      */
     private $body;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
+     * @Groups("read_project")
      */
     private $image;
 
@@ -60,6 +72,7 @@ class Project
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
+     * @Groups("read_project")
      */
     private $animation;
 
@@ -72,6 +85,7 @@ class Project
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(max=255)
      * @Assert\NotNull
+     * @Groups("read_project")
      */
     private $slug;
 
@@ -83,12 +97,20 @@ class Project
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups("read_project")
      */
     private $listOrder;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Link::class, mappedBy="project")
+     * @Groups("read_project")
+     */
+    private $links;
 
     public function __construct()
     {
         $this->vichUpdatedAt = new \DateTime();
+        $this->links = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -216,6 +238,37 @@ class Project
     public function setListOrder(?int $listOrder): self
     {
         $this->listOrder = $listOrder;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Link[]
+     */
+    public function getLinks(): Collection
+    {
+        return $this->links;
+    }
+
+    public function addLink(Link $link): self
+    {
+        if (!$this->links->contains($link)) {
+            $this->links[] = $link;
+            $link->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLink(Link $link): self
+    {
+        if ($this->links->contains($link)) {
+            $this->links->removeElement($link);
+            // set the owning side to null (unless already changed)
+            if ($link->getProject() === $this) {
+                $link->setProject(null);
+            }
+        }
 
         return $this;
     }
