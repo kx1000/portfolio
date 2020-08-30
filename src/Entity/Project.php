@@ -102,7 +102,7 @@ class Project
     private $listOrder;
 
     /**
-     * @ORM\OneToMany(targetEntity=Link::class, mappedBy="project")
+     * @ORM\OneToMany(targetEntity=Link::class, mappedBy="project", cascade={"persist"})
      * @Groups("read_project")
      */
     private $links;
