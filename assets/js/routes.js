@@ -5,12 +5,40 @@ import Project from "./components/pages/Project";
 import ProjectsList from "./components/ProjectsList";
 
 export const routes = [
-    { path: '/', name: 'about', component: About, meta: { order: 1 } },
-    { path: '/projects', component: Projects,
+    {
+        path: '/',
+        name: 'about',
+        component: About,
+        meta: {
+            title: 'O mnie',
+            order: 1
+        }
+    },
+    {
+        path: '/projects',
+        component: Projects,
         children: [
-            { path: '', component: ProjectsList, meta: {order: 2} },
-            { path: ':slug', component: Project },
+            {
+                path: '',
+                component: ProjectsList,
+                meta: {
+                    title: 'Projekty',
+                    order: 2
+                }
+            },
+            {
+                path: ':slug',
+                component: Project,
+                meta: {title: 'Projekt'}
+            },
         ]
     },
-    { path: '/contact', component: Contact, meta: { order: 3 } },
+    {
+        path: '/contact',
+        component: Contact,
+        meta: {
+            title: 'Kontakt',
+            order: 3
+        }
+    },
 ];

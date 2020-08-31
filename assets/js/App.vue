@@ -58,6 +58,14 @@ export default {
     }
   },
   methods: {
+    updatePageTitle(to) {
+      document.title = to.meta.title;
+    },
+    updatePageTransition(to, from) {
+      const fromOrder = from.meta.order;
+      const toOrder = to.meta.order;
+      this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
+    },
     getLoadingProgress: function () {
       let progress = (this.contentsLoadedCount * 100) / this.actionsCount;
       return "width: " + progress + "%";
@@ -65,9 +73,8 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      const fromOrder = from.meta.order;
-      const toOrder = to.meta.order;
-      this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
+      this.updatePageTitle(to);
+      this.updatePageTransition(to, from);
     }
   },
   mounted() {
@@ -76,6 +83,7 @@ export default {
     for (const action in actions) {
       this.$store.dispatch(action);
     }
+    document.title = this.$route.meta.title;
   },
   computed: {
     ...mapState([
