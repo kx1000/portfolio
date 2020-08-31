@@ -107,10 +107,17 @@ class Project
      */
     private $links;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Technology::class, mappedBy="project", cascade={"persist"})
+     * @Groups("read_project")
+     */
+    private $technologies;
+
     public function __construct()
     {
         $this->vichUpdatedAt = new \DateTime();
         $this->links = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -267,6 +274,37 @@ class Project
             // set the owning side to null (unless already changed)
             if ($link->getProject() === $this) {
                 $link->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Technology[]
+     */
+    public function getTechnologies(): Collection
+    {
+        return $this->technologies;
+    }
+
+    public function addTechnology(Technology $technology): self
+    {
+        if (!$this->technologies->contains($technology)) {
+            $this->technologies[] = $technology;
+            $technology->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(Technology $technology): self
+    {
+        if ($this->technologies->contains($technology)) {
+            $this->technologies->removeElement($technology);
+            // set the owning side to null (unless already changed)
+            if ($technology->getProject() === $this) {
+                $technology->setProject(null);
             }
         }
 

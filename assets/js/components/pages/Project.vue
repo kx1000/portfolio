@@ -16,6 +16,13 @@
         ></vue-easy-lightbox>
       </div>
       <div>
+        <div class="technologies">
+          <blockquote>
+            <div v-for="technology in project.technologies">
+              {{ technology.name }}
+            </div>
+          </blockquote>
+        </div>
         <div v-html="project.body"></div>
         <div class="links">
           <a v-for="link in project.links" :href="link.url" target="_blank">
@@ -133,5 +140,10 @@ export default {
 
 .links {
   margin-top: 10px;
+}
+
+.technologies blockquote div {
+  font-style: italic;
+  color: #53bd8c;
 }
 </style>
