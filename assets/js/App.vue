@@ -58,7 +58,7 @@ export default {
     }
   },
   methods: {
-    updatePageTitle(to) {
+    updateNextPageTitle(to) {
       document.title = to.meta.title;
     },
     updatePageTransition(to, from) {
@@ -69,20 +69,26 @@ export default {
     getLoadingProgress: function () {
       let progress = (this.contentsLoadedCount * 100) / this.actionsCount;
       return "width: " + progress + "%";
-    }
+    },
+    fetchDataFromApi() {
+      for (const action in actions) {
+        this.$store.dispatch(action);
+      }
+    },
+    updateStoreActionsCount() {
+      this.actionsCount = Object.keys(actions).length;
+    },
   },
   watch: {
     '$route' (to, from) {
-      this.updatePageTitle(to);
+      this.updateNextPageTitle(to);
       this.updatePageTransition(to, from);
     }
   },
   mounted() {
-    this.actionsCount = Object.keys(actions).length;
+    this.updateStoreActionsCount();
+    this.fetchDataFromApi();
 
-    for (const action in actions) {
-      this.$store.dispatch(action);
-    }
     document.title = this.$route.meta.title;
   },
   computed: {

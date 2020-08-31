@@ -92,11 +92,15 @@ export default {
       });
 
       return result;
+    },
+    updatePageTitle() {
+      document.title = this.project.title;
     }
   },
   mounted() {
     this.project = this.getCurrentProject();
     this.updateImageUrl();
+    this.updatePageTitle();
   },
   computed: {
     ...mapState([
