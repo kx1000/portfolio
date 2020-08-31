@@ -38,7 +38,6 @@ class AddUserCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
             ->addArgument('email', InputArgument::REQUIRED)
             ->addArgument('password', InputArgument::REQUIRED)
         ;
