@@ -4,12 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Form\LinkType;
+use App\Form\TechnologyType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -53,7 +53,11 @@ class ProjectCrudController extends AbstractCrudController
             TextField::new('title'),
             TextareaField::new('body'),
             CollectionField::new('links')
-                ->setEntryType(LinkType::class),
+                ->setEntryType(LinkType::class)
+                ->setFormTypeOption('by_reference', false),
+            CollectionField::new('technologies')
+                ->setEntryType(TechnologyType::class)
+                ->setFormTypeOption('by_reference', false),
             ImageField::new('image')
                 ->setBasePath($this->parameterBag->get('project_images_path'))
                 ->hideOnForm(),
