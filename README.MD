@@ -7,6 +7,8 @@
 7. `php bin/console app:add:user email password`
 8. `yarn install`
 9. `yarn encore production`
-10. 'nano .env.local' - edit APP_ENV=prod
+10. `nano .env.local` - edit APP_ENV=prod
+11. `sudo chmod -R 755 var/cache/prod/vich_uploader/`
+12. `mkdir public/projects public/projects/images public/projects/animations`
 
 Admin panel: /admin
