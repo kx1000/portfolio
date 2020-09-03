@@ -28,7 +28,9 @@
           </transition>
           <hr>
           <div class="center">
-            {{ footer.title }} <span v-html="footer.body"/>
+            <p>
+              {{ footer.title }} <span v-html="footer.body"/>
+            </p>
           </div>
         </div>
       </div>
