@@ -36,7 +36,7 @@ export default {
   display: grid;
   grid-template-rows: auto;
   grid-gap: 1em;
-  grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 12), 1fr) );
+  grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 4), 1fr) );
 }
 
 .image-grid a img {
