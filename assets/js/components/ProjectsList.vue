@@ -7,7 +7,9 @@
     <div class="image-grid">
       <router-link v-for="project in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="hvr-float">
         <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
-        {{ project.title }}
+        <div class="title">
+          {{ project.title }}
+        </div>
       </router-link>
     </div>
   </div>
@@ -42,5 +44,9 @@ export default {
 .image-grid a img {
   object-fit: cover;
   height: 300px;
+}
+
+.image-grid .title {
+  padding: 3px;
 }
 </style>

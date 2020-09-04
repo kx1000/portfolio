@@ -7,7 +7,7 @@
     </h1>
     <div class="project-grid">
       <div class="image-container">
-        <img @click="showImageModal" :src="imageUrl" class="hvr-grow">
+        <img @click="showImageModal" :src="imageUrl" class="hvr-float">
         <vue-easy-lightbox
             moveDisabled
             :visible="imgModalVisible"
