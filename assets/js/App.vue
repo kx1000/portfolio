@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="terminal">
-      <div v-if="actionsCount === contentsLoadedCount" class="animate__animated animate__zoomInDown">
+  <div class="terminal">
+      <div v-if="actionsCount === contentsLoadedCount" class="fadeIn">
         <div class="container">
           <div class="terminal-nav">
             <div class="terminal-logo">
@@ -102,3 +102,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to   { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 2s ease-out;
+}
+</style>

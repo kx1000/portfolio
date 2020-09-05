@@ -8,12 +8,6 @@
     <div class="project-grid">
       <div class="image-container">
         <img @click="showImageModal" :src="imageUrl" class="hvr-float">
-        <vue-easy-lightbox
-            moveDisabled
-            :visible="imgModalVisible"
-            :imgs="imageUrl"
-            @hide="handleHideModal"
-        ></vue-easy-lightbox>
       </div>
       <div>
         <div class="technologies">
@@ -35,6 +29,12 @@
   <div v-else>
     :(
   </div>
+  <vue-easy-lightbox
+      moveDisabled
+      :visible="imgModalVisible"
+      :imgs="imageUrl"
+      @hide="handleHideModal"
+  ></vue-easy-lightbox>
 </div>
 </template>
 
@@ -136,10 +136,6 @@ export default {
 
 .image-container img:hover {
   cursor: pointer;
-}
-
-.vel-modal {
-  height: 100vh;
 }
 
 .links {
