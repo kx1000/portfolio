@@ -32,6 +32,13 @@ class Image
      */
     private $file;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\Type("DateTime")
+     * @Assert\NotNull
+     */
+    private $vichUpdatedAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -42,7 +49,7 @@ class Image
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -63,5 +70,21 @@ class Image
     public function setFile($file): void
     {
         $this->file = $file;
+
+        if (null !== $file) {
+            $this->setVichUpdatedAt(new \DateTime());
+        }
+    }
+
+    public function getVichUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->vichUpdatedAt;
+    }
+
+    public function setVichUpdatedAt(\DateTimeInterface $vichUpdatedAt): self
+    {
+        $this->vichUpdatedAt = $vichUpdatedAt;
+
+        return $this;
     }
 }
