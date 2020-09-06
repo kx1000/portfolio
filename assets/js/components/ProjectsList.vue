@@ -5,10 +5,12 @@
     </h1>
     <div class="terminal-alert" v-html="projectsList.body" />
     <div class="image-grid">
-      <router-link v-for="project in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="hvr-float">
-        <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
-        <div class="title">
-          {{ project.title }}
+      <router-link v-for="(project, index) in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="hvr-float">
+        <div class="animate__animated animate__zoomIn animate__delay-1s" :style="'--animate-delay: '+ index * 0.15 +'s; --animate-duration: .3s;'">
+          <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
+          <div class="title">
+            {{ project.title }}
+          </div>
         </div>
       </router-link>
     </div>

@@ -6,7 +6,7 @@
       <vue-typer :text="project.title" :repeat="0"></vue-typer>
     </h1>
     <div class="project-grid">
-      <div class="image-container">
+      <div class="image-container animate__animated animate__zoomIn" style="--animate-duration: .4s;">
         <img @click="showImageModal" :src="imageUrl" class="hvr-float">
       </div>
       <div>
