@@ -30,6 +30,10 @@ class ImageCrudController extends AbstractCrudController
                 ->hideOnForm(),
             ImageField::new('file')
                 ->setFormType(VichImageType::class)
+                ->setFormTypeOptions([
+                    'required' => true,
+                    'allow_delete' => false,
+                ])
                 ->hideOnIndex()
                 ->hideOnDetail(),
         ];

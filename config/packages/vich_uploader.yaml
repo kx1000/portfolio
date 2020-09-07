@@ -5,9 +5,12 @@ vich_uploader:
         images:
             uri_prefix: '%images_path%'
             upload_destination: '%kernel.project_dir%/public%images_path%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
         projects_images:
             uri_prefix: '%project_images_path%'
             upload_destination: '%kernel.project_dir%/public%project_images_path%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
         projects_animations:
             uri_prefix: '%project_animations_path%'
             upload_destination: '%kernel.project_dir%/public%project_animations_path%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

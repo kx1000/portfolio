@@ -73,3 +73,32 @@ body {
 .vue-typer .custom.char.typed {
     color: var(--font-color);
 }
+
+.about-grid {
+    height: 100%;
+    align-items: center;
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 3), 1fr) );
+}
+
+.about-grid div:first-child {
+    text-align: center;
+}
+
+.about-grid img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+@media only screen and (min-width: 800px) {
+    .about-grid div:first-child {
+        text-align: right;
+    }
+
+    .about-grid img {
+        margin-right: 50px;
+    }
+}

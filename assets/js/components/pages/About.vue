@@ -3,7 +3,7 @@
     <h1>
       <vue-typer :text="about.title" :repeat="0"></vue-typer>
     </h1>
-    <div v-html="about.body"></div>
+    <div v-html="about.body" class="about-grid"></div>
   </div>
 </template>
 
