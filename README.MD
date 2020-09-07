@@ -8,7 +8,7 @@
 8. `yarn install`
 9. `yarn encore production`
 10. `nano .env.local` - edit APP_ENV=prod
-11. `sudo chmod -R 755 var/cache/prod/vich_uploader/`
-12. `mkdir public/projects public/projects/images public/projects/animations public/images`
+11. `mkdir public/projects public/projects/images public/projects/animations public/images`
+12. `sudo chown -R www-data public/images public/projects/images public/projects/animations var/cache/prod/vich_uploader`
 
 Admin panel: /admin
