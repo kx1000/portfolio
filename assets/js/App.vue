@@ -4,19 +4,31 @@
         <div class="container">
           <div class="terminal-nav">
             <div class="terminal-logo">
-              <div class="logo terminal-prompt">
-                <router-link class="no-style" to="/">
+              <div class="logo terminal-prompt animate__animated animate__zoomIn" style="--animate-duration: .3s;">
+                <a class="no-style" href="/">
                   {{ header.title }}
-                </router-link>
+                </a>
               </div>
               {{ header.body }}
             </div>
             <nav class="terminal-menu">
               <ul>
                 <li><dark-mode-switch /></li>
-                <li><router-link to="/" exact>O mnie</router-link></li>
-                <li><router-link to="/projects">Projekty</router-link></li>
-                <li><router-link to="/contact">Kontakt</router-link></li>
+                <li class="animate__animated animate__zoomIn animate__delay-1s" style="--animate-delay: .3s; --animate-duration: .3s;">
+                  <router-link to="/" exact>
+                    00. O mnie
+                  </router-link>
+                </li>
+                <li class="animate__animated animate__zoomIn animate__delay-1s" style="--animate-delay: .6s; --animate-duration: .3s;">
+                  <router-link to="/projects">
+                    01. Projekty
+                  </router-link>
+                </li>
+                <li class="animate__animated animate__zoomIn animate__delay-1s" style="--animate-delay: .9s; --animate-duration: .3s;">
+                  <router-link to="/contact">
+                    02. Kontakt
+                  </router-link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -106,10 +118,10 @@ export default {
 <style scoped>
 @keyframes fadeIn {
   from {opacity: 0;}
-  to   { opacity: 1; }
+  to   {opacity: 1;}
 }
 
 .fadeIn {
-  animation: fadeIn 2s ease-out;
+  animation: fadeIn .6s ease-out;
 }
 </style>
