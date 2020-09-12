@@ -45,6 +45,22 @@
             </p>
           </div>
         </div>
+        <div class="right-side-container">
+          <div class="link">
+            <a href="mailto:kacper.rogula@gmail.com">
+              kacper.rogula@gmail.com
+            </a>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div class="left-side-container">
+          <div class="line"></div>
+          <div class="link">
+            <a href="tel:+48574189841">
+              +48 574 189 841
+            </a>
+          </div>
+        </div>
       </div>
       <div v-else>
         <div class="progress-bar progress-bar-no-arrow">
@@ -123,5 +139,64 @@ export default {
 
 .fadeIn {
   animation: fadeIn .6s ease-out;
+}
+
+.right-side-container {
+  position: fixed;
+  bottom: 10px;
+  left: auto;
+  z-index: 10;
+  color: rgb(168, 178, 209);
+  right: calc(50% - (850px / 2) - 100px);
+  width: 40px;
+}
+
+.right-side-container > .link {
+  align-items: center;
+  position: relative;
+  -moz-box-align: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.right-side-container > .link > a {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  writing-mode: vertical-rl;
+  margin: 20px auto;
+}
+
+.right-side-container > .line, .left-side-container > .line {
+  display: block;
+  width: 1px;
+  height: 100px;
+  margin: 0 auto;
+  #background-color: rgb(168, 178, 209);
+  border-left: 1px dashed var(--secondary-color);
+}
+
+.left-side-container {
+  position: fixed;
+  top: 10px;
+  right: auto;
+  z-index: 10;
+  color: rgb(168, 178, 209);
+  left: calc(50% - (850px / 2) - 100px);
+  width: 40px;
+}
+
+.left-side-container .link {
+  align-items: center;
+  position: relative;
+  -moz-box-align: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.left-side-container .link a {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  writing-mode: sideways-lr;
+  margin: 20px auto;
 }
 </style>
