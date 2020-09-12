@@ -63,6 +63,7 @@
         </div>
       </div>
       <div v-else>
+        <div class="sk-plane"></div>
         <div class="progress-bar progress-bar-no-arrow">
           <div class="progress-bar-filled" :style="getLoadingProgress()"></div>
         </div>
@@ -198,5 +199,15 @@ export default {
   letter-spacing: 0.1em;
   writing-mode: sideways-lr;
   margin: 20px auto;
+}
+
+.sk-plane {
+  background-color: var(--font-color);
+  position: fixed;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 </style>

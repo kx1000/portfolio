@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import 'terminal.css'
 import 'animate.css'
 import 'hover.css'
+import 'spinkit/spinkit.min.css'
 import '../css/app.css';
 
 library.add(fas);
