@@ -121,9 +121,16 @@ a, button {
   --animate-duration: .3s;
 }
 
-@for $i from 0 through 20 {
+@for $i from 0 through 10 {
   .fast_animation_delay_#{$i} {
     @extend .fast_animation;
     animation-delay: $i * 0.3s;
+  }
+}
+
+@for $i from 0 through 10 {
+  .very_fast_animation_delay_#{$i} {
+    --animate-duration: .3s;
+    animation-delay: $i * 0.15s;
   }
 }
