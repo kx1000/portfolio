@@ -4,7 +4,7 @@
         <div class="container">
           <div class="terminal-nav">
             <div class="terminal-logo">
-              <div class="logo terminal-prompt animate__animated animate__zoomIn" style="--animate-duration: .3s;">
+              <div class="logo terminal-prompt animate__animated animate__zoomIn fast_animation">
                 <a class="no-style" href="/">
                   {{ header.title }}
                 </a>
@@ -14,17 +14,17 @@
             <nav class="terminal-menu">
               <ul>
                 <li><dark-mode-switch /></li>
-                <li class="animate__animated animate__zoomIn animate__delay-1s" style="--animate-delay: .3s; --animate-duration: .3s;">
+                <li class="animate__animated animate__zoomIn fast_animation_delay_1">
                   <router-link to="/" exact>
                     00. O mnie
                   </router-link>
                 </li>
-                <li class="animate__animated animate__zoomIn animate__delay-1s" style="--animate-delay: .6s; --animate-duration: .3s;">
+                <li class="animate__animated animate__zoomIn fast_animation_delay_2">
                   <router-link to="/projects">
                     01. Projekty
                   </router-link>
                 </li>
-                <li class="animate__animated animate__zoomIn animate__delay-1s" style="--animate-delay: .9s; --animate-duration: .3s;">
+                <li class="animate__animated animate__zoomIn fast_animation_delay_3">
                   <router-link to="/contact">
                     02. Kontakt
                   </router-link>
@@ -45,7 +45,7 @@
             </p>
           </div>
         </div>
-        <div class="right-side-container">
+        <div class="right-side-container animate__animated animate__zoomIn fast_animation_delay_4">
           <div class="link">
             <a href="mailto:kacper.rogula@gmail.com">
               kacper.rogula@gmail.com
@@ -53,7 +53,7 @@
           </div>
           <div class="line"></div>
         </div>
-        <div class="left-side-container">
+        <div class="left-side-container animate__animated animate__zoomIn fast_animation_delay_5">
           <div class="line"></div>
           <div class="link">
             <a href="tel:+48574189841">
@@ -64,9 +64,6 @@
       </div>
       <div v-else>
         <div class="sk-plane"></div>
-        <div class="progress-bar progress-bar-no-arrow">
-          <div class="progress-bar-filled" :style="getLoadingProgress()"></div>
-        </div>
       </div>
   </div>
 </template>
@@ -96,10 +93,6 @@ export default {
       const fromOrder = from.meta.order;
       const toOrder = to.meta.order;
       this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
-    },
-    getLoadingProgress: function () {
-      let progress = (this.contentsLoadedCount * 100) / this.actionsCount;
-      return "width: " + progress + "%";
     },
     fetchDataFromApi() {
       for (const action in actions) {
@@ -139,7 +132,7 @@ export default {
 }
 
 .fadeIn {
-  animation: fadeIn .6s ease-out;
+  animation: fadeIn 2s;
 }
 
 .right-side-container {
