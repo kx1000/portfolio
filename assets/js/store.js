@@ -6,25 +6,17 @@ import {contentNames, ApiService} from './Service/ApiService'
 Vue.use(vuex, axios)
 
 export const actions = {
-    loadHeader({commit}) {
+    loadMain({commit}) {
         ApiService
-            .fetchContent(contentNames.HEADER)
+            .fetchPageContents(contentNames.MAIN)
             .then(data => {
-                commit('SET_HEADER', data)
-                commit('INCREMENT_CONTENTS_LOADED_COUNT')
-            })
-    },
-    loadFooter({commit}) {
-        ApiService
-            .fetchContent(contentNames.FOOTER)
-            .then(data => {
-                commit('SET_FOOTER', data)
+                commit('SET_MAIN', data)
                 commit('INCREMENT_CONTENTS_LOADED_COUNT')
             })
     },
     loadAbout({commit}) {
         ApiService
-            .fetchContent(contentNames.ABOUT)
+            .fetchPageContents(contentNames.ABOUT)
             .then(data => {
                 commit('SET_ABOUT', data)
                 commit('INCREMENT_CONTENTS_LOADED_COUNT')
@@ -32,7 +24,7 @@ export const actions = {
     },
     loadProjectsList({commit}) {
         ApiService
-            .fetchContent(contentNames.PROJECTS)
+            .fetchPageContents(contentNames.PROJECTS)
             .then(data => {
                 commit('SET_PROJECTS_LIST', data)
                 commit('INCREMENT_CONTENTS_LOADED_COUNT')
@@ -40,17 +32,9 @@ export const actions = {
     },
     loadContact({commit}) {
         ApiService
-            .fetchContent(contentNames.CONTACT)
+            .fetchPageContents(contentNames.CONTACT)
             .then(data => {
                 commit('SET_CONTACT', data)
-                commit('INCREMENT_CONTENTS_LOADED_COUNT')
-            })
-    },
-    loadSentConfirmation({commit}) {
-        ApiService
-            .fetchContent(contentNames.SENT)
-            .then(data => {
-                commit('SET_SENT_CONFIRMATION', data)
                 commit('INCREMENT_CONTENTS_LOADED_COUNT')
             })
     },
@@ -64,36 +48,39 @@ export const actions = {
     }
 };
 
+const convertToObject = data => {
+    let contents = {};
+    data.contents.forEach((content) => {
+        contents[content.name] = content.value;
+    });
+    return contents;
+}
+
 export default new vuex.Store({
     state: {
         contentsLoadedCount: 0,
-        header: '',
-        footer: '',
+        main: '',
         about: '',
         projectsList: '',
         contact: '',
-        sentConfirmation: '',
         projects: [],
     },
     actions: actions,
     mutations: {
-        SET_HEADER (state, data) {
-            state.header = data
-        },
-        SET_FOOTER (state, data) {
-            state.footer = data
+        SET_MAIN (state, data) {
+            state.main = convertToObject(data)
         },
         SET_ABOUT (state, data) {
-            state.about = data
+            state.about = convertToObject(data)
         },
         SET_PROJECTS_LIST (state, data) {
-            state.projectsList = data
+            state.projectsList = convertToObject(data)
         },
         SET_CONTACT (state, data) {
-            state.contact = data
+            state.contact = convertToObject(data)
         },
         SET_SENT_CONFIRMATION (state, data) {
-            state.sentConfirmation = data
+            state.sentConfirmation = convertToObject(data)
         },
         SET_PROJECTS (state, data) {
             state.projects = data
