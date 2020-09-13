@@ -2,14 +2,33 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Action\NotFoundAction;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\PageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get"={
+ *              "normalization_context"={"groups"={"get_page"}}
+ *          }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *             "controller"=NotFoundAction::class,
+ *             "read"=false,
+ *             "output"=false,
+ *         },
+ *     }
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"name": "exact"})
  * @ORM\Entity(repositoryClass=PageRepository::class)
  */
 class Page
@@ -23,11 +42,13 @@ class Page
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("get_page")
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page")
+     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page", cascade={"persist"})
+     * @Groups("get_page")
      */
     private $contents;
 
