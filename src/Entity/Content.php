@@ -33,7 +33,6 @@ class Content
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotNull
      * @Assert\Length(max=1500)
      * @Groups("get_page")
      */
@@ -49,6 +48,7 @@ class Content
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
+     * @Assert\NotNull
      * @Groups("get_page")
      */
     private $name;
