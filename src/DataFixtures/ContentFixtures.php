@@ -13,35 +13,35 @@ class ContentFixtures extends Fixture
         $abooutContent = (new Content())
             ->setName('about')
             ->setTitle('CZEŚĆ 👋')
-            ->setBody('Przykładowy tekst')
+            ->setValue('Przykładowy tekst')
             ;
         $manager->persist($abooutContent);
 
         $sentContent = (new Content())
             ->setName('sent')
             ->setTitle(' Wysłano wiadomość')
-            ->setBody('Twoja wiadomość została przesłana! 🚀 👏')
+            ->setValue('Twoja wiadomość została przesłana! 🚀 👏')
         ;
         $manager->persist($sentContent);
 
         $projectsContent = (new Content())
             ->setName('projects')
             ->setTitle('Projekty')
-            ->setBody('Zobacz jakimi projektami programistycznymi zajmowałem się hobbystycznie. 👇')
+            ->setValue('Zobacz jakimi projektami programistycznymi zajmowałem się hobbystycznie. 👇')
         ;
         $manager->persist($projectsContent);
 
         $contactContent = (new Content())
             ->setName('contact')
             ->setTitle('Kontakt')
-            ->setBody('Skontaktuj się ze mną wysyłając wiadomość na adres kacper.rogula@gmail.com lub po prostu skorzystaj z formularza poniżej. 👇😉')
+            ->setValue('Skontaktuj się ze mną wysyłając wiadomość na adres kacper.rogula@gmail.com lub po prostu skorzystaj z formularza poniżej. 👇😉')
         ;
         $manager->persist($contactContent);
 
         $footerContent = (new Content())
             ->setName('footer')
             ->setTitle('Kacper Rogula 2020')
-            ->setBody('<a href="https://bitbucket.org/k1002/portfolio-sf/" target="_blank">źródło strony</a>')
+            ->setValue('<a href="https://bitbucket.org/k1002/portfolio-sf/" target="_blank">źródło strony</a>')
         ;
         $manager->persist($footerContent);
 

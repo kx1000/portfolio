@@ -31,61 +31,43 @@ class Content
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(max=255)
-     * @Assert\NotNull
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(max=255)
-     */
-    private $title;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      * @Assert\Length(max=1500)
      */
-    private $body;
+    private $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="contents")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
+     */
+    private $page;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getValue(): ?string
     {
-        return $this->name;
+        return $this->value;
     }
 
-    public function setName(string $name): self
+    public function setValue(?string $value): self
     {
-        $this->name = $name;
+        $this->value = $value;
 
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getPage(): ?Page
     {
-        return $this->title;
+        return $this->page;
     }
 
-    public function setTitle(?string $title): self
+    public function setPage(?Page $page): self
     {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getBody(): ?string
-    {
-        return $this->body;
-    }
-
-    public function setBody(?string $body): self
-    {
-        $this->body = $body;
+        $this->page = $page;
 
         return $this;
     }
