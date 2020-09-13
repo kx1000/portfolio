@@ -190,7 +190,8 @@ export default {
 .left-side-container .link a {
   font-size: 12px;
   letter-spacing: 0.1em;
-  writing-mode: sideways-lr;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
   margin: 20px auto;
 }
 
