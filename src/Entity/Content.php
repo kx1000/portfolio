@@ -2,23 +2,24 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ContentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
- *     collectionOperations={
- *         "get"
- *     },
  *     itemOperations={
- *         "get"
- *     }
+ *         "get"={
+ *             "controller"=NotFoundAction::class,
+ *             "read"=false,
+ *             "output"=false,
+ *         },
+ *     },
+ *     collectionOperations={}
  * )
- * @ApiFilter(SearchFilter::class, properties={"name": "exact"})
  * @ORM\Entity(repositoryClass=ContentRepository::class)
  */
 class Content
@@ -31,27 +32,54 @@ class Content
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(max=255)
+     * @ORM\Column(type="text")
+     * @Assert\Length(max=1500)
+     * @Groups("get_page")
+     */
+    private $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="contents")
+     * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull
      */
-    private $name;
+    private $page;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
+     * @Assert\NotNull
+     * @Groups("get_page")
      */
-    private $title;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(max=1500)
-     */
-    private $body;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function setValue(?string $value): self
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(?Page $page): self
+    {
+        $this->page = $page;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -62,30 +90,6 @@ class Content
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getBody(): ?string
-    {
-        return $this->body;
-    }
-
-    public function setBody(?string $body): self
-    {
-        $this->body = $body;
 
         return $this;
     }

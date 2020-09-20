@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Content;
-use App\Entity\Image;
+use App\Entity\File;
 use App\Entity\Message;
+use App\Entity\Page;
 use App\Entity\Project;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -22,7 +22,7 @@ class DashboardController extends AbstractDashboardController
     {
         $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
 
-        return $this->redirect($routeBuilder->setController(ContentCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(PageCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -34,9 +34,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToUrl('Home', 'fas fa-home', '/');
-        yield MenuItem::linkToCrud('Treści', 'fas fa-sticky-note', Content::class);
+        yield MenuItem::linkToCrud('Strony', 'fas fa-sticky-note', Page::class);
         yield MenuItem::linkToCrud('Projekty', 'fas fa-project-diagram', Project::class);
         yield MenuItem::linkToCrud('Wiadomości', 'fas fa-envelope', Message::class);
-        yield MenuItem::linkToCrud('Zdjęcia', 'far fa-image', Image::class);
+        yield MenuItem::linkToCrud('Pliki', 'far fa-image', File::class);
     }
 }

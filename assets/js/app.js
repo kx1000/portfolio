@@ -6,6 +6,7 @@ import store from "./store";
 
 import VueTyperPlugin from 'vue-typer'
 import Lightbox from 'vue-easy-lightbox'
+import Nl2br from 'vue-nl2br'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -19,12 +20,13 @@ import 'spinkit/spinkit.min.css'
 import '../css/app.scss'
 
 library.add(fas);
-library.add(fab)
+library.add(fab);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VueRouter);
 Vue.use(VueTyperPlugin);
-Vue.use(Lightbox)
+Vue.use(Lightbox);
+Vue.component('nl2br', Nl2br)
 
 const router = new VueRouter({routes});
 

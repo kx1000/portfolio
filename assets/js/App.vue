@@ -6,10 +6,9 @@
             <div class="terminal-logo">
               <div class="logo terminal-prompt animate__animated animate__zoomIn fast_animation">
                 <a class="no-style" href="/">
-                  {{ header.title }}
+                  {{ main.header }}
                 </a>
               </div>
-              {{ header.body }}
             </div>
             <nav class="terminal-menu">
               <ul>
@@ -41,14 +40,14 @@
           <hr>
           <div class="center">
             <p>
-              {{ footer.title }} <span v-html="footer.body"/>
+              {{ main.footer }} <a :href="main.pageSource" target="_blank">kod strony</a>
             </p>
           </div>
         </div>
         <div class="right-side-container animate__animated animate__zoomIn fast_animation_delay_4">
           <div class="link">
-            <a href="mailto:kacper.rogula@gmail.com">
-              kacper.rogula@gmail.com
+            <a :href="'mailto:' + main.email">
+              {{ main.email }}
             </a>
           </div>
           <div class="line"></div>
@@ -56,8 +55,8 @@
         <div class="left-side-container animate__animated animate__zoomIn fast_animation_delay_5">
           <div class="line"></div>
           <div class="link">
-            <a href="tel:+48574189841">
-              +48 574 189 841
+            <a :href="'tel:' + main.phone">
+              {{ main.phone }}
             </a>
           </div>
         </div>
@@ -117,8 +116,7 @@ export default {
   },
   computed: {
     ...mapState([
-        'header',
-        'footer',
+        'main',
         'contentsLoadedCount'
     ])
   }

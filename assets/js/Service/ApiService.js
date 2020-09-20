@@ -1,19 +1,16 @@
 import axios from "axios";
-import {mapState} from "vuex";
 
 export const contentNames = {
     CONTACT: 'contact',
-    SENT: 'sent',
     ABOUT: 'about',
     PROJECTS: 'projects',
-    HEADER: 'header',
-    FOOTER: 'footer',
+    MAIN: 'main',
 }
 
 class ApiServiceClass
 {
-    fetchContent(contentName) {
-        return axios.get('/api/contents.json?name=' + contentName)
+    fetchPageContents(pageName) {
+        return axios.get('/api/pages.json?name=' + pageName)
             .then(res => {
                 if (undefined !== res.data[0]) return res.data[0]
             })

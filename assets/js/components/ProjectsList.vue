@@ -3,7 +3,7 @@
     <h1>
       <vue-typer :text="projectsList.title" :repeat="0"></vue-typer>
     </h1>
-    <div class="terminal-alert" v-html="projectsList.body" />
+    <div class="terminal-alert" v-html="projectsList.description" />
     <div class="image-grid">
       <router-link v-for="(project, index) in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="hvr-float">
         <div :class="'animate__animated animate__zoomIn very_fast_animation_delay_' + index">

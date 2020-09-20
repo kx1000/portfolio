@@ -4,9 +4,9 @@
       <vue-typer :text="contact.title" :repeat="0"></vue-typer>
     </h1>
     <form v-if="false === isSent" @submit.prevent="onSubmit">
-      <div v-html="contact.body" class="terminal-alert"></div>
+      <div v-html="contact.description" class="terminal-alert"></div>
       <div v-if="isError" class="terminal-alert terminal-alert-error">
-        Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>kacper.rogula@gmail.com</b>.
+        Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>{{ main.email }}</b>.
       </div>
       <fieldset>
           <legend>Formularz kontaktowy</legend>
@@ -29,7 +29,7 @@
       </form>
       <div v-else class="animate__animated animate__tada">
         <div class="terminal-alert terminal-alert-primary">
-          {{ sentConfirmation.body }}
+          {{ contact.sentConfirmation }}
         </div>
       </div>
   </div>
@@ -71,7 +71,7 @@ export default {
   computed: {
     ...mapState([
       'contact',
-      'sentConfirmation',
+      'main',
     ])
   }
 }
