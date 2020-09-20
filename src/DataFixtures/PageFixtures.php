@@ -46,7 +46,12 @@ class PageFixtures extends Fixture
             ->addContent(
                 (new Content())
                     ->setName('title')
-                    ->setValue('CZEŚĆ 👋')
+                    ->setValue('00. O mnie')
+            )
+            ->addContent(
+                (new Content())
+                    ->setName('welcome')
+                    ->setValue('Cześć 👋')
             )
             ->addContent(
                 (new Content())
