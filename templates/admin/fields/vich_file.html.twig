@@ -1,0 +1,19 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{% set html_id = 'ea-lightbox-' ~ field.uniqueId %}
+{% if field.formattedValue|isDisplayable %}
+    <a href="#" class="ea-lightbox-thumbnail" data-featherlight="#{{ html_id }}" data-featherlight-close-on-click="anywhere">
+        <img src="{{ asset(field.formattedValue) }}" class="img-fluid">
+        <br>
+        {{ field.formattedValue }}
+    </a>
+
+    <div id="{{ html_id }}" class="ea-lightbox">
+        <img src="{{ asset(field.formattedValue) }}">
+    </div>
+{% else %}
+    <a href="{{ field.formattedValue }}" target="_blank">
+        {{ field.formattedValue }}
+    </a>
+{% endif %}
