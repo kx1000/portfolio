@@ -2,34 +2,40 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Image;
+use App\Entity\File;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\HttpFoundation\UrlHelper;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
-class ImageCrudController extends AbstractCrudController
+class FileCrudController extends AbstractCrudController
 {
     private $parameterBag;
+    private $urlHelper;
 
-    public function __construct(ParameterBagInterface $parameterBag)
+    public function __construct(ParameterBagInterface $parameterBag, UrlHelper $urlHelper)
     {
         $this->parameterBag = $parameterBag;
+        $this->urlHelper = $urlHelper;
     }
 
     public static function getEntityFqcn(): string
     {
-        return Image::class;
+        return File::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            ImageField::new('name')
-                ->setBasePath($this->parameterBag->get('images_path'))
+            TextField::new('name')
+                ->formatValue(function($value) {
+                    return $this->urlHelper->getAbsoluteUrl($this->parameterBag->get('files_path') . $value);
+                })
                 ->hideOnForm(),
             ImageField::new('file')
-                ->setFormType(VichImageType::class)
+                ->setFormType(VichFileType::class)
                 ->setFormTypeOptions([
                     'required' => true,
                     'allow_delete' => false,

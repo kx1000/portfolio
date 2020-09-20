@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ImageRepository;
+use App\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass=ImageRepository::class)
+ * @ORM\Entity(repositoryClass=FileRepository::class)
  * @Vich\Uploadable()
  */
-class Image
+class File
 {
     /**
      * @ORM\Id()
@@ -27,7 +27,7 @@ class Image
     private $name;
 
     /**
-     * @Vich\UploadableField(mapping="images", fileNameProperty="name")
+     * @Vich\UploadableField(mapping="files", fileNameProperty="name")
      * @Assert\NotNull
      */
     private $file;

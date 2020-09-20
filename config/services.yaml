@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    images_path: '/images/'
+    files_path: '/files/'
     project_images_path: '/projects/images/'
     project_animations_path: '/projects/animations/'
 services:
