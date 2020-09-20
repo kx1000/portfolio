@@ -1,0 +1,11 @@
+dh_doctrine_audit:
+    timezone: 'Europe/Warsaw'
+    entities:
+        App\Entity\Message: ~
+        App\Entity\User: ~
+        App\Entity\Page: ~
+        App\Entity\Content: ~
+        App\Entity\Project: ~
+        App\Entity\Link: ~
+        App\Entity\Technology: ~
+        App\Entity\File: ~

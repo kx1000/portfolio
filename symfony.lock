@@ -19,6 +19,18 @@
     "composer/package-versions-deprecated": {
         "version": "1.10.99.1"
     },
+    "damienharper/doctrine-audit-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "ab8b371ee4206c79a144f3617d8eef3d6e7b87be"
+        },
+        "files": [
+            "config/packages/dh_doctrine_audit.yaml"
+        ]
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -330,6 +342,9 @@
     },
     "symfony/intl": {
         "version": "v5.1.3"
+    },
+    "symfony/lock": {
+        "version": "v5.1.5"
     },
     "symfony/mailer": {
         "version": "4.3",
