@@ -51,6 +51,18 @@ class Message
      */
     private $body;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotNull
+     * @Assert\Type("datetime")
+     */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +100,18 @@ class Message
     public function setBody(string $body): self
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
