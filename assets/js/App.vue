@@ -33,20 +33,20 @@
           </div>
         </div>
         <div class="">
-        <div class="container animate__animated animate__zoomIn fast_animation_delay_4">
+        <div class="container">
           <hr>
           <transition :name="transitionName" mode="out-in">
             <router-view></router-view>
           </transition>
           <hr>
-          <div class="center animate__animated animate__zoomIn fast_animation_delay_5">
+          <div class="center animate__animated animate__zoomIn fast_animation_delay_4">
             <p>
               {{ main.footer }} <a :href="main.pageSource" target="_blank">kod strony</a>
             </p>
           </div>
         </div>
         </div>
-        <div class="right-side-container animate__animated animate__zoomIn fast_animation_delay_6">
+        <div class="right-side-container animate__animated animate__zoomIn fast_animation_delay_5">
           <div class="link">
             <a :href="'mailto:' + main.email">
               {{ main.email }}
@@ -54,7 +54,7 @@
           </div>
           <div class="line"></div>
         </div>
-        <div class="left-side-container animate__animated animate__zoomIn fast_animation_delay_7">
+        <div class="left-side-container animate__animated animate__zoomIn fast_animation_delay_6">
           <div class="line"></div>
           <div class="link">
             <a :href="'tel:' + main.phone">
