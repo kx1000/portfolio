@@ -30,3 +30,8 @@ yarn-error.log
 /public/projects/
 /public/files/
 ###< uploads ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
