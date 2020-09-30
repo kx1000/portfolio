@@ -6,10 +6,13 @@ use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
+ *     normalizationContext={"groups"={"message"}},
+ *     denormalizationContext={"groups"={"message"}},
  *     itemOperations={
  *         "get"={
  *             "controller"=NotFoundAction::class,
@@ -35,12 +38,14 @@ class Message
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Email
+     * @Groups({"message"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
+     * @Groups({"message"})
      */
     private $title;
 
@@ -48,6 +53,7 @@ class Message
      * @ORM\Column(type="string", length=1500)
      * @Assert\Length(max=1500)
      * @Assert\NotNull
+     * @Groups({"message"})
      */
     private $body;
 
