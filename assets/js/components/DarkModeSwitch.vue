@@ -1,7 +1,7 @@
 <template>
-  <button class="btn btn-default btn-ghost" @click="toggleDarkClass">
+  <a class="btn btn-default btn-ghost" @click="toggleDarkClass">
     <font-awesome-icon icon="adjust" />
-  </button>
+  </a>
 </template>
 
 <script>

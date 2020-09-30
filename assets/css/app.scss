@@ -134,3 +134,12 @@ a, button {
     animation-delay: $i * 0.15s;
   }
 }
+
+.terminal-menu li a.router-link-active {
+  border-bottom: 1px solid var(--primary-color);
+  transition: 2s;
+}
+
+.terminal-menu li a:not(.btn) {
+  padding: 10px 0;
+}

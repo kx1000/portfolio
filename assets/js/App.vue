@@ -12,7 +12,7 @@
             </div>
             <nav class="terminal-menu">
               <ul>
-                <li><dark-mode-switch /></li>
+                <li class="animate__animated animate__zoomIn fast_animation_delay_9"><dark-mode-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
                   <router-link to="/" exact>
                     00. O mnie
@@ -32,21 +32,19 @@
             </nav>
           </div>
         </div>
-        <div class="">
         <div class="container">
-          <hr>
+          <hr class="animate__animated animate__fadeInLeft fast_animation_delay_5">
           <transition :name="transitionName" mode="out-in">
             <router-view></router-view>
           </transition>
-          <hr>
+          <hr class="animate__animated animate__fadeInRight fast_animation_delay_6">
           <div class="center animate__animated animate__zoomIn fast_animation_delay_4">
             <p>
               {{ main.footer }} <a :href="main.pageSource" target="_blank">kod strony</a>
             </p>
           </div>
         </div>
-        </div>
-        <div class="right-side-container animate__animated animate__zoomIn fast_animation_delay_5">
+        <div class="right-side-container animate__animated animate__slideInUp fast_animation_delay_7">
           <div class="link">
             <a :href="'mailto:' + main.email">
               {{ main.email }}
@@ -54,7 +52,7 @@
           </div>
           <div class="line"></div>
         </div>
-        <div class="left-side-container animate__animated animate__zoomIn fast_animation_delay_6">
+        <div class="left-side-container animate__animated animate__slideInDown fast_animation_delay_8">
           <div class="line"></div>
           <div class="link">
             <a :href="'tel:' + main.phone">
