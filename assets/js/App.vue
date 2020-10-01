@@ -12,7 +12,7 @@
             </div>
             <nav class="terminal-menu">
               <ul>
-                <li class="animate__animated animate__zoomIn fast_animation_delay_9"><dark-mode-switch /></li>
+                <li><dark-mode-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
                   <router-link to="/" exact>
                     00. O mnie
