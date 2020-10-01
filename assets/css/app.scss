@@ -143,3 +143,8 @@ a, button {
 .terminal-menu li a:not(.btn) {
   padding: 10px 0;
 }
+
+.hvr-float {
+  -webkit-transform: inherit;
+  transform: inherit;
+}
