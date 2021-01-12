@@ -57,22 +57,18 @@ class ProjectCrudController extends AbstractCrudController
                 ->setFormTypeOption('by_reference', false),
             CollectionField::new('technologies')
                 ->setEntryType(TechnologyType::class)
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                    'allow_delete' => true,
-                    'allow_add' => true,
-                ]),
+                ->setFormTypeOption('by_reference', false),
             ImageField::new('image')
                 ->setBasePath($this->parameterBag->get('project_images_path'))
                 ->hideOnForm(),
-            ImageField::new('imageFile')
+            TextareaField::new('imageFile')
                 ->setFormType(VichImageType::class)
                 ->hideOnIndex()
                 ->hideOnDetail(),
             ImageField::new('animation')
                 ->setBasePath($this->parameterBag->get('project_animations_path'))
                 ->hideOnForm(),
-            ImageField::new('animationFile')
+            TextareaField::new('animationFile')
                 ->setFormType(VichImageType::class)
                 ->hideOnIndex()
                 ->hideOnDetail(),

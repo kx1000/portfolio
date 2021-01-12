@@ -102,13 +102,13 @@ class Project
     private $listOrder;
 
     /**
-     * @ORM\OneToMany(targetEntity=Link::class, mappedBy="project", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Link::class, mappedBy="project", cascade={"persist"}, orphanRemoval=true)
      * @Groups("read_project")
      */
     private $links;
 
     /**
-     * @ORM\OneToMany(targetEntity=Technology::class, mappedBy="project", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Technology::class, mappedBy="project", cascade={"persist"}, orphanRemoval=true)
      * @Groups("read_project")
      */
     private $technologies;
