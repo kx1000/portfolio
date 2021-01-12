@@ -57,7 +57,11 @@ class ProjectCrudController extends AbstractCrudController
                 ->setFormTypeOption('by_reference', false),
             CollectionField::new('technologies')
                 ->setEntryType(TechnologyType::class)
-                ->setFormTypeOption('by_reference', false),
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                    'allow_delete' => true,
+                    'allow_add' => true,
+                ]),
             ImageField::new('image')
                 ->setBasePath($this->parameterBag->get('project_images_path'))
                 ->hideOnForm(),

@@ -148,3 +148,25 @@ a, button {
   -webkit-transform: inherit;
   transform: inherit;
 }
+
+.loader {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid var(--invert-font-color);
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+@keyframes spinAround {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(359deg)
+  }
+}

@@ -23,7 +23,12 @@
             <textarea v-model="data.body" id="tarea" cols="30" rows="5" name="body" required></textarea>
           </div>
           <div class="form-group">
-            <button class="btn btn-default" type="submit" role="button" name="send" id="submit">Wyślij</button>
+            <button v-if="isSending" class="btn btn-default" disabled>
+              <span class="loader"></span>
+            </button>
+            <button v-else class="btn btn-default" type="submit" role="button" name="send" id="submit">
+              Wyślij
+            </button>
           </div>
         </fieldset>
       </form>
@@ -43,6 +48,7 @@ export default {
   name: "Contact",
   data() {
     return {
+      isSending: false,
       isSent: false,
       isError: false,
       data: {
@@ -54,6 +60,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.isSending = true;
       axios.post('/api/messages.json', this.data)
         .then(res => {
           if (201 === res.status) {
@@ -66,6 +73,7 @@ export default {
           this.isError = true;
           console.log(error);
         })
+        .finally(() => this.isSending = false)
     }
   },
   computed: {

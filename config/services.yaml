@@ -31,3 +31,6 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    EasyCorp\Bundle\EasyAdminBundle\Cache\CacheWarmer:
+        tags:
+            - { name: kernel.cache_warmer }

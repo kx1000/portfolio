@@ -1,13 +1,15 @@
-<?php namespace App\Tests\Factory;
+<?php
+
+namespace App\Tests\unit\Factory;
+
 use App\Entity\User;
 use App\Factory\UserFactory;
 use App\Tests\UnitTester;
-use Codeception\Stub\Expected;
 use Codeception\Util\Stub;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * php vendor/bin/codecept run unit Factory\UserFactoryCest
+ * php vendor/bin/codecept run unit Factory/UserFactoryCest
  */
 class UserFactoryCest
 {
