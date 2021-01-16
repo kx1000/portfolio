@@ -5,11 +5,14 @@
     </h1>
     <div class="terminal-alert" v-html="projectsList.description" />
     <div class="image-grid">
-      <router-link v-for="(project, index) in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="hvr-float">
+      <router-link v-for="(project, index) in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="item hvr-float">
         <div :class="'animate__animated animate__zoomIn very_fast_animation_delay_' + index">
           <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
           <div class="title">
             {{ project.title }}
+            <small v-if="project.year">
+              {{ project.year }}
+            </small>
           </div>
         </div>
       </router-link>
@@ -46,9 +49,5 @@ export default {
 .image-grid a img {
   object-fit: cover;
   height: 300px;
-}
-
-.image-grid .title {
-  padding: 3px;
 }
 </style>

@@ -32,7 +32,7 @@ class Content
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=1500)
      * @Groups("get_page")
      */

@@ -113,6 +113,13 @@ class Project
      */
     private $technologies;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max=255)
+     * @Groups("read_project")
+     */
+    private $year;
+
     public function __construct()
     {
         $this->vichUpdatedAt = new \DateTime();
@@ -307,6 +314,18 @@ class Project
                 $technology->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getYear(): ?string
+    {
+        return $this->year;
+    }
+
+    public function setYear(?string $year): self
+    {
+        $this->year = $year;
 
         return $this;
     }

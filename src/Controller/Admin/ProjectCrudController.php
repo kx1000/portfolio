@@ -51,6 +51,7 @@ class ProjectCrudController extends AbstractCrudController
             IntegerField::new('listOrder'),
             TextField::new('slug'),
             TextField::new('title'),
+            TextField::new('year'),
             TextareaField::new('body'),
             CollectionField::new('links')
                 ->setEntryType(LinkType::class)

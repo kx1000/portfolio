@@ -3,7 +3,7 @@
   <router-link to="/projects" class="back">< powrót</router-link>
   <div v-if="null !== project">
     <h1>
-      <vue-typer :text="project.title" :repeat="0"></vue-typer>
+      <vue-typer :text="title" :repeat="0"></vue-typer>
     </h1>
     <div class="project-grid">
       <div class="image-container animate__animated animate__zoomIn fast_animation">
@@ -105,7 +105,16 @@ export default {
   computed: {
     ...mapState([
       'projects',
-    ])
+    ]),
+    title() {
+      let title = this.project.title;
+
+      if (this.project.year) {
+        title += ' ∙ ' + this.project.year;
+      }
+
+      return title;
+    }
   }
 }
 </script>
