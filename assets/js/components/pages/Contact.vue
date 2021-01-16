@@ -27,7 +27,12 @@
               <span class="loader"></span>
             </button>
             <button v-else class="btn btn-default" type="submit" role="button" name="send" id="submit">
-              Wyślij
+              <span class="icon">
+                <font-awesome-icon icon="paper-plane" />
+              </span>
+              <span>
+                Wyślij
+              </span>
             </button>
           </div>
         </fieldset>

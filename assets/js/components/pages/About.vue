@@ -11,7 +11,12 @@
         <p class="hello">{{ about.welcome }}</p>
         <nl2br tag="p" :text="about.description" />
         <a :href="about.cv" class="btn btn-default" target="_blank">
-          Pobierz moje CV
+          <span class="icon">
+            <font-awesome-icon icon="file-pdf" />
+          </span>
+          <span>
+            Pobierz moje CV
+          </span>
         </a>
       </div>
     </div>

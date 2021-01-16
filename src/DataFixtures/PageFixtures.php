@@ -83,6 +83,16 @@ class PageFixtures extends Fixture
                     ->setName('description')
                     ->setValue('Zobacz jakimi projektami programistycznymi zajmowałem się hobbystycznie. 👇')
             )
+            ->addContent(
+                (new Content())
+                    ->setName('githubLink')
+                    ->setValue('https://github.com/kx1000')
+            )
+            ->addContent(
+                (new Content())
+                    ->setName('githubName')
+                    ->setValue('GitHub.com/kx1000')
+            )
         ;
         $manager->persist($projectsPage);
 

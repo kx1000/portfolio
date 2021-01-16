@@ -17,6 +17,17 @@
         </div>
       </router-link>
     </div>
+    <div v-if="projectsList.githubLink && projectsList.githubName" style="text-align: center">
+      <hr>
+      <a :href="projectsList.githubLink" target="_blank" class="btn btn-default">
+        <span class="icon">
+          <font-awesome-icon :icon="['fab', 'github']" />
+        </span>
+        <span>
+          {{ projectsList.githubName }}
+        </span>
+      </a>
+    </div>
   </div>
 </template>
 
