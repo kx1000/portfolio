@@ -11,7 +11,7 @@
           <div class="title">
             {{ project.title }}
             <small v-if="project.year">
-              {{ project.year }}
+              //{{ project.year }}
             </small>
           </div>
         </div>

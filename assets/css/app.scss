@@ -174,3 +174,7 @@ a, button {
 .btn > .icon {
   margin-right: 10px;
 }
+
+.terminal-prompt::before {
+  content: "<?php";
+}

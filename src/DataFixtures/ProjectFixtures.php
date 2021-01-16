@@ -15,6 +15,7 @@ class ProjectFixtures extends Fixture
         $project1 = (new Project())
             ->setTitle('Projekt 1')
             ->setSlug('project-1')
+            ->setYear('2020 - 2021')
             ->setBody('Test projekt 1.')
             ->addLink(
                 (new Link())
@@ -32,6 +33,7 @@ class ProjectFixtures extends Fixture
         $project2 = (new Project())
             ->setTitle('Projekt 2')
             ->setSlug('project-2')
+            ->setYear('2010')
             ->setBody('Test projekt 2.')
         ;
         $manager->persist($project2);
@@ -39,6 +41,7 @@ class ProjectFixtures extends Fixture
         $project3 = (new Project())
             ->setTitle('Projekt 3')
             ->setSlug('project-3')
+            ->setYear('2025')
             ->setBody('Test projekt 3.')
         ;
         $manager->persist($project3);
