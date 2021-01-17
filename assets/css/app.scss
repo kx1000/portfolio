@@ -178,3 +178,11 @@ a, button {
 .terminal-prompt::before {
   content: "<?php";
 }
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+a:hover .text-secondary {
+  color: #494949;
+}

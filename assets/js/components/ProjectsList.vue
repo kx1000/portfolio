@@ -10,7 +10,7 @@
           <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
           <div class="title">
             {{ project.title }}
-            <small v-if="project.year">
+            <small v-if="project.year" class="text-secondary">
               //{{ project.year }}
             </small>
           </div>
