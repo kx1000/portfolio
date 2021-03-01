@@ -31,7 +31,7 @@
                 <font-awesome-icon icon="paper-plane" />
               </span>
               <span>
-                Wyślij
+                {{ $t('contact.send') }}
               </span>
             </button>
           </div>

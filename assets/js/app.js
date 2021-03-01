@@ -18,6 +18,7 @@ import 'animate.css'
 import 'hover.css'
 import 'spinkit/spinkit.min.css'
 import '../css/app.scss'
+import i18n from "./i18n";
 
 library.add(fas);
 library.add(fab);
@@ -34,5 +35,6 @@ new Vue({
     el: '#app',
     router,
     store,
+    i18n,
     render: h => h(App)
 })
