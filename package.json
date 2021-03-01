@@ -10,6 +10,7 @@
     "@vue/cli-shared-utils": "^4.5.11",
     "animate.css": "^4.1.0",
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "hover.css": "^2.3.2",
     "spinkit": "^2.0.1",
     "terminal.css": "^0.7.1",
