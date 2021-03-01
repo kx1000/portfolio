@@ -13,6 +13,7 @@
             <nav class="terminal-menu">
               <ul>
                 <li><dark-mode-switch /></li>
+                <li><lang-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
                   <router-link to="/" exact>
                     00. O mnie
@@ -71,13 +72,14 @@
 import DarkModeSwitch from "./components/DarkModeSwitch";
 import {mapState} from 'vuex'
 import {actions} from "./store";
+import LangSwitch from "./components/LangSwitch";
 
 const NEXT_TRANSITION = 'slide-left';
 const PREVIOUS_TRANSITION = 'slide-right';
 
 export default {
   name: 'app',
-  components: { DarkModeSwitch },
+  components: {LangSwitch, DarkModeSwitch },
   data () {
     return {
       actionsCount: null,
