@@ -6,6 +6,8 @@ use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ContentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Locastic\ApiPlatformTranslationBundle\Model\AbstractTranslatable;
+use Locastic\ApiPlatformTranslationBundle\Model\TranslationInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass=ContentRepository::class)
  */
-class Content
+class Content extends AbstractTranslatable
 {
     /**
      * @ORM\Id()
@@ -32,8 +34,6 @@ class Content
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(max=1500)
      * @Groups("get_page")
      */
     private $value;
@@ -53,6 +53,12 @@ class Content
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ContentTranslation", mappedBy="translatable", fetch="EXTRA_LAZY", indexBy="locale", cascade={"PERSIST"}, orphanRemoval=true)
+     * @Groups({"get_page", "translations"})
+     */
+    protected $translations;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,12 +66,12 @@ class Content
 
     public function getValue(): ?string
     {
-        return $this->value;
+        return $this->getTranslation()->getValue();
     }
 
     public function setValue(?string $value): self
     {
-        $this->value = $value;
+        $this->getTranslation()->setValue($value);
 
         return $this;
     }
@@ -92,5 +98,10 @@ class Content
         $this->name = $name;
 
         return $this;
+    }
+
+    protected function createTranslation(): TranslationInterface
+    {
+        return new ContentTranslation();
     }
 }

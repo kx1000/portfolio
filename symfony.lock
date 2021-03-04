@@ -222,6 +222,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.4"
     },
+    "locastic/api-platform-translation-bundle": {
+        "version": "v1.3.3"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
     },

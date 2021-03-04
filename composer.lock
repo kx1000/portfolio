@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2add63c8dfb289a1c7fdac416f7d63fd",
+    "content-hash": "a134f7edd9cdc3d197db55964a3f1f09",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2201,6 +2201,62 @@
                 }
             ],
             "time": "2020-09-14T14:23:00+00:00"
+        },
+        {
+            "name": "locastic/api-platform-translation-bundle",
+            "version": "v1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Locastic/ApiPlatformTranslationBundle.git",
+                "reference": "79fcf8be8ed90f5568a7c418be03cea2f26f3887"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Locastic/ApiPlatformTranslationBundle/zipball/79fcf8be8ed90f5568a7c418be03cea2f26f3887",
+                "reference": "79fcf8be8ed90f5568a7c418be03cea2f26f3887",
+                "shasum": ""
+            },
+            "require": {
+                "api-platform/core": "^2.1",
+                "doctrine/doctrine-bundle": "^1.6 || ^2.0",
+                "doctrine/orm": "^2.4.5",
+                "php": "^7.2.5",
+                "symfony/dependency-injection": "*",
+                "symfony/translation": "*"
+            },
+            "conflict": {
+                "symfony/translations-contracts": "<2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Locastic\\ApiPlatformTranslationBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paula",
+                    "email": "paula@locastic.com"
+                }
+            ],
+            "description": "Translation bundle for Api platform based on Sylius translation",
+            "support": {
+                "issues": "https://github.com/Locastic/ApiPlatformTranslationBundle/issues",
+                "source": "https://github.com/Locastic/ApiPlatformTranslationBundle/tree/v1.3.3"
+            },
+            "time": "2020-10-22T12:36:41+00:00"
         },
         {
             "name": "monolog/monolog",
