@@ -41,14 +41,13 @@
 <script>
 import {mapState} from "vuex";
 import VueEasyLightbox from 'vue-easy-lightbox'
+import {MODULE_PAGES_CONTENTS} from "../../store/modules/pagesContents";
 
 const ANIMATIONS_PATH = '/projects/animations/';
 const IMAGES_PATH = '/projects/images/';
-
 const DEFAULT_LINK_ICON = 'link';
 
 export default {
-  name: "Project",
   components: {
     VueEasyLightbox
   },
@@ -103,7 +102,7 @@ export default {
     this.updatePageTitle();
   },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'projects',
     ]),
     title() {

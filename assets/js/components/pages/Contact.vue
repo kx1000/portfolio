@@ -48,9 +48,9 @@
 <script>
 import axios from 'axios'
 import {mapState} from "vuex";
+import {MODULE_PAGES_CONTENTS} from "../../store/modules/pagesContents";
 
 export default {
-  name: "Contact",
   data() {
     return {
       isSending: false,
@@ -82,7 +82,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'contact',
       'main',
     ])

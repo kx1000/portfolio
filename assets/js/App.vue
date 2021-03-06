@@ -1,6 +1,6 @@
 <template>
   <div class="terminal">
-      <div v-if="actionsCount === contentsLoadedCount" class="fadeIn">
+      <div v-if="allContentsCount === contentsLoadedCount" class="fadeIn">
         <div class="container">
           <div class="terminal-nav">
             <div class="terminal-logo">
@@ -70,9 +70,9 @@
 
 <script>
 import DarkModeSwitch from "./components/DarkModeSwitch";
-import {mapState} from 'vuex'
-import {actions} from "./store";
+import {mapActions, mapState} from 'vuex'
 import LangSwitch from "./components/LangSwitch";
+import {MODULE_PAGES_CONTENTS} from "./store/modules/pagesContents";
 
 const NEXT_TRANSITION = 'slide-left';
 const PREVIOUS_TRANSITION = 'slide-right';
@@ -82,11 +82,15 @@ export default {
   components: {LangSwitch, DarkModeSwitch },
   data () {
     return {
-      actionsCount: null,
       transitionName: NEXT_TRANSITION,
     }
   },
   methods: {
+    ...mapActions([
+        'loadAllPagesContents',
+        'loadProjects',
+        'updatePageContentsActionsCount',
+    ]),
     updateNextPageTitle(to) {
       document.title = to.meta.title;
     },
@@ -94,14 +98,6 @@ export default {
       const fromOrder = from.meta.order;
       const toOrder = to.meta.order;
       this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
-    },
-    fetchDataFromApi() {
-      for (const action in actions) {
-        this.$store.dispatch(action);
-      }
-    },
-    updateStoreActionsCount() {
-      this.actionsCount = Object.keys(actions).length;
     },
   },
   watch: {
@@ -111,15 +107,17 @@ export default {
     }
   },
   mounted() {
-    this.updateStoreActionsCount();
-    this.fetchDataFromApi();
-
+    this.updatePageContentsActionsCount();
+    this.loadAllPagesContents();
     document.title = this.$route.meta.title;
   },
   computed: {
+    ...mapState(MODULE_PAGES_CONTENTS, [
+        'main'
+    ]),
     ...mapState([
-        'main',
-        'contentsLoadedCount'
+        'contentsLoadedCount',
+        'allContentsCount',
     ])
   }
 }

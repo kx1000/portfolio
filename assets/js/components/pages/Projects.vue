@@ -11,7 +11,6 @@ const TO_DEPTH_TRANSITION = 'slide-up';
 const FROM_DEPTH_TRANSITION = 'slide-bottom';
 
 export default {
-  name: "Projects",
   data: function () {
     return {
       transitionName: TO_DEPTH_TRANSITION,

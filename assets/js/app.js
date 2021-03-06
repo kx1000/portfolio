@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from "vue-router"
 import { routes } from "./routes"
-import store from "./store";
+import store from "./store/index";
 
 import VueTyperPlugin from 'vue-typer'
 import Lightbox from 'vue-easy-lightbox'

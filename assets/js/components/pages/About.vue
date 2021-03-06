@@ -25,15 +25,11 @@
 
 <script>
 import {mapState} from "vuex";
+import {MODULE_PAGES_CONTENTS} from "../../store/modules/pagesContents";
 
 export default {
-  name: "About",
-  data () {
-    return {
-    }
-  },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'about'
     ])
   }

@@ -33,6 +33,7 @@
 
 <script>
 import {mapState} from "vuex";
+import {MODULE_PAGES_CONTENTS} from "../store/modules/pagesContents";
 
 export default {
   name: "ProjectsList",
@@ -41,7 +42,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'projectsList',
       'projects',
     ])
