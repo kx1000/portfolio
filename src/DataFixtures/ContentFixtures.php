@@ -26,45 +26,49 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
     {
         $mainPage = $this->getReference(PageFixtures::REF_MAIN);
 
-        $contentHeader = new Content();
-        $contentHeader->setCurrentLocale(self::LOCALE_PL);
-        $contentHeader
+        $contentHeader = (new Content())
             ->setPage($mainPage)
-            ->setName('header')
-            ->setValue('kacper.tech');
+            ->setName('header');
+        $contentHeader->setCurrentLocale(self::LOCALE_PL);
+        $contentHeader->setValue('kacper.tech');
+        $contentHeader->setCurrentLocale(self::LOCALE_EN);
+        $contentHeader->setValue('kacper.tech');
         $manager->persist($contentHeader);
 
-        $contentFooter = new Content();
-        $contentFooter->setCurrentLocale(self::LOCALE_PL);
-        $contentFooter
+        $contentFooter = (new Content())
             ->setPage($mainPage)
-            ->setName('footer')
-            ->setValue('Kacper Rogula 2020');
+            ->setName('footer');
+        $contentFooter->setCurrentLocale(self::LOCALE_PL);
+        $contentFooter->setValue('Kacper Rogula 2020');
+        $contentFooter->setCurrentLocale(self::LOCALE_EN);
+        $contentFooter->setValue('Kacper Rogula 2020');
         $manager->persist($contentFooter);
 
-        $contentPageSource = new Content();
-        $contentPageSource->setCurrentLocale(self::LOCALE_PL);
-        $contentPageSource
+        $contentPageSource = (new Content())
             ->setPage($mainPage)
-            ->setName('pageSource')
-            ->setValue('https://bitbucket.org/k1002/portfolio-sf/');
+            ->setName('pageSource');
+        $contentPageSource->setCurrentLocale(self::LOCALE_PL);
+        $contentPageSource->setValue('https://github.com/kx1000/portfolio');
+        $contentPageSource->setCurrentLocale(self::LOCALE_EN);
+        $contentPageSource->setValue('https://github.com/kx1000/portfolio');
         $manager->persist($contentPageSource);
 
-        $contentPhone = new Content();
-        $contentPhone->setCurrentLocale(self::LOCALE_PL);
-        $contentPhone
+        $contentPhone = (new Content())
             ->setPage($mainPage)
-            ->setName('phone')
-            ->setValue('+48 574 189 841');
-
+            ->setName('phone');
+        $contentPhone->setCurrentLocale(self::LOCALE_PL);
+        $contentPhone->setValue('+48 574 189 841');
+        $contentPhone->setCurrentLocale(self::LOCALE_EN);
+        $contentPhone->setValue('+48 574 189 841');
         $manager->persist($contentPhone);
 
-        $contentEmail = new Content();
-        $contentEmail->setCurrentLocale(self::LOCALE_PL);
-        $contentEmail
+        $contentEmail = (new Content())
             ->setPage($mainPage)
-            ->setName('email')
-            ->setValue('kacper.rogula@gmail.com');
+            ->setName('email');
+        $contentEmail->setCurrentLocale(self::LOCALE_PL);
+        $contentEmail->setValue('kacper.rogula@gmail.com');
+        $contentEmail->setCurrentLocale(self::LOCALE_EN);
+        $contentEmail->setValue('kacper.rogula@gmail.com');
         $manager->persist($contentEmail);
     }
 
@@ -72,60 +76,49 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
     {
         $aboutPage = $this->getReference(PageFixtures::REF_ABOUT);
 
-        $contentTitlePl = new Content();
-        $contentTitlePl->setCurrentLocale(self::LOCALE_PL);
-        $contentTitlePl
+        $contentTitle = (new Content())
             ->setPage($aboutPage)
-            ->setName('title')
-            ->setValue('00. O mnie');
-        $manager->persist($contentTitlePl);
+            ->setName('title');
+        $contentTitle->setCurrentLocale(self::LOCALE_PL);
+        $contentTitle->setValue('00. O mnie');
+        $contentTitle->setCurrentLocale(self::LOCALE_EN);
+        $contentTitle->setValue('00. About');
+        $manager->persist($contentTitle);
 
-        $contentTitleEn = new Content();
-        $contentTitleEn->setCurrentLocale(self::LOCALE_EN);
-        $contentTitleEn
+        $contentWelcome = (new Content())
             ->setPage($aboutPage)
-            ->setName('title')
-            ->setValue('00. About');
-        $manager->persist($contentTitleEn);
+            ->setName('welcome');
+        $contentWelcome->setCurrentLocale(self::LOCALE_PL);
+        $contentWelcome->setValue('Cześć 👋');
+        $contentWelcome->setCurrentLocale(self::LOCALE_EN);
+        $contentWelcome->setValue('Hello 👋');
+        $manager->persist($contentWelcome);
 
-        $contentWelcomePl = new Content();
-        $contentWelcomePl->setCurrentLocale(self::LOCALE_PL);
-        $contentWelcomePl
+        $contentImage = (new Content())
             ->setPage($aboutPage)
-            ->setName('welcome')
-            ->setValue('Cześć 👋');
-        $manager->persist($contentWelcomePl);
-
-        $contentWelcomeEn = new Content();
-        $contentWelcomeEn->setCurrentLocale(self::LOCALE_EN);
-        $contentWelcomeEn
-            ->setPage($aboutPage)
-            ->setName('welcome')
-            ->setValue('Hello 👋');
-        $manager->persist($contentWelcomeEn);
-
-        $contentImage = new Content();
+            ->setName('image');
         $contentImage->setCurrentLocale(self::LOCALE_PL);
-        $contentImage
-            ->setPage($aboutPage)
-            ->setName('image')
-            ->setValue('https://picsum.photos/300/300');
+        $contentImage->setValue('https://picsum.photos/300/300');
+        $contentImage->setCurrentLocale(self::LOCALE_EN);
+        $contentImage->setValue('https://picsum.photos/300/300');
         $manager->persist($contentImage);
 
-        $contentDescription = new Content();
-        $contentDescription->setCurrentLocale(self::LOCALE_PL);
-        $contentDescription
+        $contentDescription = (new Content())
             ->setPage($aboutPage)
-            ->setName('description')
-            ->setValue('Mój przykładowy opis :)');
+            ->setName('description');
+        $contentDescription->setCurrentLocale(self::LOCALE_PL);
+        $contentDescription->setValue('Mój przykładowy opis :)');
+        $contentDescription->setCurrentLocale(self::LOCALE_EN);
+        $contentDescription->setValue('My example description :)');
         $manager->persist($contentDescription);
 
-        $contentCv = new Content();
-        $contentCv->setCurrentLocale(self::LOCALE_PL);
-        $contentCv
+        $contentCv = (new Content())
             ->setPage($aboutPage)
-            ->setName('cv')
-            ->setValue('https://picsum.photos/300/300');
+            ->setName('cv');
+        $contentCv->setCurrentLocale(self::LOCALE_PL);
+        $contentCv->setValue('https://picsum.photos/300/300');
+        $contentCv->setCurrentLocale(self::LOCALE_EN);
+        $contentCv->setValue('https://picsum.photos/300/300');
         $manager->persist($contentCv);
     }
 
@@ -133,36 +126,40 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
     {
         $projectsPage = $this->getReference(PageFixtures::REF_PROJECTS);
 
-        $contentTitle = new Content();
-        $contentTitle->setCurrentLocale(self::LOCALE_PL);
-        $contentTitle
+        $contentTitle = (new Content())
             ->setPage($projectsPage)
-            ->setName('title')
-            ->setValue('Projekty');
+            ->setName('title');
+        $contentTitle->setCurrentLocale(self::LOCALE_PL);
+        $contentTitle->setValue('01. Projekty');
+        $contentTitle->setCurrentLocale(self::LOCALE_EN);
+        $contentTitle->setValue('01. Projects');
         $manager->persist($contentTitle);
 
-        $contentDescription = new Content();
-        $contentDescription->setCurrentLocale(self::LOCALE_PL);
-        $contentDescription
+        $contentDescription = (new Content())
             ->setPage($projectsPage)
-            ->setName('description')
-            ->setValue('Zobacz jakimi projektami programistycznymi zajmowałem się hobbystycznie. 👇');
+            ->setName('description');
+        $contentDescription->setCurrentLocale(self::LOCALE_PL);
+        $contentDescription->setValue('Zobacz jakimi projektami programistycznymi zajmowałem się hobbystycznie. 👇');
+        $contentDescription->setCurrentLocale(self::LOCALE_EN);
+        $contentDescription->setValue('See what programming projects I have made as a hobby. 👇');
         $manager->persist($contentDescription);
 
-        $contentGithubLink = new Content();
-        $contentGithubLink->setCurrentLocale(self::LOCALE_PL);
-        $contentGithubLink
+        $contentGithubLink = (new Content())
             ->setPage($projectsPage)
-            ->setName('githubLink')
-            ->setValue('https://github.com/kx1000');
+            ->setName('githubLink');
+        $contentGithubLink->setCurrentLocale(self::LOCALE_PL);
+        $contentGithubLink->setValue('https://github.com/kx1000');
+        $contentGithubLink->setCurrentLocale(self::LOCALE_EN);
+        $contentGithubLink->setValue('https://github.com/kx1000');
         $manager->persist($contentGithubLink);
 
-        $contentGithubName = new Content();
-        $contentGithubName->setCurrentLocale(self::LOCALE_PL);
-        $contentGithubName
+        $contentGithubName = (new Content())
             ->setPage($projectsPage)
-            ->setName('githubName')
-            ->setValue('GitHub.com/kx1000');
+            ->setName('githubName');
+        $contentGithubName->setCurrentLocale(self::LOCALE_PL);
+        $contentGithubName->setValue('GitHub.com/kx1000');
+        $contentGithubName->setCurrentLocale(self::LOCALE_EN);
+        $contentGithubName->setValue('GitHub.com/kx1000');
         $manager->persist($contentGithubName);
     }
 
@@ -170,28 +167,33 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
     {
         $contactPage = $this->getReference(PageFixtures::REF_CONTACT);
 
-        $contentTitle = new Content();
-        $contentTitle->setCurrentLocale(self::LOCALE_PL);
-        $contentTitle
+        $contentTitle = (new Content())
             ->setPage($contactPage)
-            ->setName('title')
-            ->setValue('Kontakt');
+            ->setName('title');
+        $contentTitle->setCurrentLocale(self::LOCALE_PL);
+        $contentTitle->setValue('02. Kontakt');
+        $contentTitle->setCurrentLocale(self::LOCALE_EN);
+        $contentTitle->setValue('02. Contact');
         $manager->persist($contentTitle);
 
-        $contentDescription =new Content();
+        $contentDescription = (new Content())
+            ->setPage($contactPage)
+            ->setName('description');
         $contentDescription->setCurrentLocale(self::LOCALE_PL);
         $contentDescription
-            ->setPage($contactPage)
-            ->setName('description')
             ->setValue('Skontaktuj się ze mną wysyłając wiadomość na adres kacper.rogula@gmail.com lub po prostu skorzystaj z formularza poniżej. 👇😉');
+        $contentDescription->setCurrentLocale(self::LOCALE_EN);
+        $contentDescription
+            ->setValue('Contact me by sending a message to kacper.rogula@gmail.com or just use the form below. 👇😉 ');
         $manager->persist($contentDescription);
 
-        $contentSentConfirmation = new Content();
-        $contentSentConfirmation->setCurrentLocale(self::LOCALE_PL);
-        $contentSentConfirmation
+        $contentSentConfirmation = (new Content())
             ->setPage($contactPage)
-            ->setName('sentConfirmation')
-            ->setValue('Twoja wiadomość została przesłana! 🚀 👏');
+            ->setName('sentConfirmation');
+        $contentSentConfirmation->setCurrentLocale(self::LOCALE_PL);
+        $contentSentConfirmation->setValue('Twoja wiadomość została przesłana! 🚀 👏');
+        $contentSentConfirmation->setCurrentLocale(self::LOCALE_EN);
+        $contentSentConfirmation->setValue('Your message has been sent! 🚀 👏');
         $manager->persist($contentSentConfirmation);
     }
 
