@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Content;
 use App\Entity\Page;
 use App\Field\TranslationField;
+use App\Form\ContentType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -20,21 +21,13 @@ class ContentCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $fieldsConfig = [
-            'value' => [
-                'field_type' => TextareaType::class,
-                'required' => true,
-            ],
-        ];
-
         return [
             TextField::new('page')
                 ->setFormType(EntityType::class)
-                ->setFormTypeOption('class', Page::class)
-                ->hideOnIndex(),
+                ->setFormTypeOption('class', Page::class),
             TextField::new('name'),
-            TranslationField::new('translations', 'value', $fieldsConfig)
-                ->setRequired(true)
+            // because "The Doctrine type of the "translations" field is "4", which is not supported by EasyAdmin yet."
+            TranslationField::new('translations', 'value', ContentType::getTranslationsFieldOptions())
                 ->hideOnIndex(),
         ];
     }
