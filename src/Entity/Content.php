@@ -40,7 +40,7 @@ class Content extends AbstractTranslatable
 
     /**
      * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="contents")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Assert\NotNull
      */
     private $page;

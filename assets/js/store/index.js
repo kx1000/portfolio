@@ -17,7 +17,9 @@ export default new vuex.Store({
         updatePageContentsActionsCount({commit}) {
             commit('SET_ALL_CONTENTS_COUNT', Object.keys(pagesContents.actions).length);
         },
-        loadAllPagesContents({dispatch}) {
+        loadAllPagesContents({dispatch, commit}) {
+            commit('RESET_CONTENTS_LOADED_COUNT');
+            dispatch('updatePageContentsActionsCount');
             for (const action in pagesContents.actions) {
                 dispatch(MODULE_PAGES_CONTENTS + '/' + action);
             }
@@ -26,6 +28,9 @@ export default new vuex.Store({
     mutations: {
         SET_ALL_CONTENTS_COUNT (state, data) {
             state.allContentsCount = data;
+        },
+        RESET_CONTENTS_LOADED_COUNT (state) {
+            state.contentsLoadedCount = 0;
         },
         INCREMENT_CONTENTS_LOADED_COUNT (state) {
             state.contentsLoadedCount++;

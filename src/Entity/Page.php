@@ -47,7 +47,7 @@ class Page
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page", cascade={"persist"}, orphanRemoval=true)
      * @Groups("get_page")
      */
     private $contents;

@@ -73,6 +73,7 @@ import DarkModeSwitch from "./components/DarkModeSwitch";
 import {mapActions, mapState} from 'vuex'
 import LangSwitch from "./components/LangSwitch";
 import {MODULE_PAGES_CONTENTS} from "./store/modules/pagesContents";
+import axios from "axios";
 
 const NEXT_TRANSITION = 'slide-left';
 const PREVIOUS_TRANSITION = 'slide-right';
@@ -89,7 +90,6 @@ export default {
     ...mapActions([
         'loadAllPagesContents',
         'loadProjects',
-        'updatePageContentsActionsCount',
     ]),
     updateNextPageTitle(to) {
       document.title = to.meta.title;
@@ -107,7 +107,7 @@ export default {
     }
   },
   mounted() {
-    this.updatePageContentsActionsCount();
+    axios.defaults.headers.common['Accept-Language'] = this.$i18n.locale;
     this.loadAllPagesContents();
     document.title = this.$route.meta.title;
   },
