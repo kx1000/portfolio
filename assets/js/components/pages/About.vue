@@ -32,6 +32,9 @@ export default {
     ...mapState(MODULE_PAGES_CONTENTS, [
       'about'
     ])
+  },
+  created() {
+    document.title = this.about.title;
   }
 }
 </script>

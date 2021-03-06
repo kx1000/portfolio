@@ -9,10 +9,7 @@ export const routes = [
         path: '/',
         name: 'about',
         component: About,
-        meta: {
-            title: 'O mnie',
-            order: 1
-        }
+        meta: { order: 1 }
     },
     {
         path: '/projects',
@@ -21,24 +18,17 @@ export const routes = [
             {
                 path: '',
                 component: ProjectsList,
-                meta: {
-                    title: 'Projekty',
-                    order: 2
-                }
+                meta: { order: 2 }
             },
             {
                 path: ':slug',
                 component: Project,
-                meta: {title: 'Projekt'}
             },
         ]
     },
     {
         path: '/contact',
         component: Contact,
-        meta: {
-            title: 'Kontakt',
-            order: 3
-        }
+        meta: { order: 3 }
     },
 ];

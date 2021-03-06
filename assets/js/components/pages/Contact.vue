@@ -86,6 +86,9 @@ export default {
       'contact',
       'main',
     ])
+  },
+  created() {
+    document.title = this.contact.title;
   }
 }
 </script>

@@ -16,17 +16,17 @@
                 <li><lang-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
                   <router-link to="/" exact>
-                    00. O mnie
+                    {{ about.title }}
                   </router-link>
                 </li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_2">
                   <router-link to="/projects">
-                    01. Projekty
+                    {{ projectsList.title }}
                   </router-link>
                 </li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_3">
                   <router-link to="/contact">
-                    02. Kontakt
+                    {{ contact.title }}
                   </router-link>
                 </li>
               </ul>
@@ -91,9 +91,6 @@ export default {
         'loadAllPagesContents',
         'loadProjects',
     ]),
-    updateNextPageTitle(to) {
-      document.title = to.meta.title;
-    },
     updatePageTransition(to, from) {
       const fromOrder = from.meta.order;
       const toOrder = to.meta.order;
@@ -102,7 +99,6 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      this.updateNextPageTitle(to);
       this.updatePageTransition(to, from);
     }
   },
@@ -113,7 +109,10 @@ export default {
   },
   computed: {
     ...mapState(MODULE_PAGES_CONTENTS, [
-        'main'
+        'main',
+        'about',
+        'projectsList',
+        'contact',
     ]),
     ...mapState([
         'contentsLoadedCount',
