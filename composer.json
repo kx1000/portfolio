@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "a2lix/translation-form-bundle": "^3.0",
         "api-platform/core": "^2.1",
         "composer/package-versions-deprecated": "1.10.99.1",
         "damienharper/doctrine-audit-bundle": "^3.4",

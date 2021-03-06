@@ -20,4 +20,6 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     DH\DoctrineAuditBundle\DHDoctrineAuditBundle::class => ['all' => true],
     Locastic\ApiPlatformTranslationBundle\ApiPlatformTranslationBundle::class => ['all' => true],
+    A2lix\AutoFormBundle\A2lixAutoFormBundle::class => ['all' => true],
+    A2lix\TranslationFormBundle\A2lixTranslationFormBundle::class => ['all' => true],
 ];
