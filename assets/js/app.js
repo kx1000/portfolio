@@ -17,7 +17,7 @@ import 'terminal.css'
 import 'animate.css'
 import 'hover.css'
 import 'spinkit/spinkit.min.css'
-import '../css/app.scss'
+import '../scss/app.scss'
 import i18n from "./i18n";
 
 library.add(fas);
