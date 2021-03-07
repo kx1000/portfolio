@@ -6,7 +6,7 @@
     <form v-if="false === isSent" @submit.prevent="onSubmit">
       <div v-html="contact.description" class="terminal-alert"></div>
       <div v-if="isError" class="terminal-alert terminal-alert-error">
-        Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>{{ main.email }}</b>.
+        {{ $t('contact.error') }} <b>{{ main.email }}</b>.
       </div>
       <fieldset>
           <legend>Formularz kontaktowy</legend>

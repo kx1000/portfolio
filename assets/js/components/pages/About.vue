@@ -15,7 +15,7 @@
             <font-awesome-icon icon="file-pdf" />
           </span>
           <span>
-            Pobierz moje CV
+            {{ $t('about.download') }}
           </span>
         </a>
       </div>

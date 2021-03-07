@@ -1,5 +1,9 @@
 {
   "contact": {
-    "send": "Send"
+    "send": "Send",
+    "error": "The message could not be sent. Send a message using your email client to the following address:"
+  },
+  "about": {
+    "download": "Download my resume"
   }
 }

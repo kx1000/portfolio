@@ -1,5 +1,9 @@
 {
   "contact": {
-    "send": "Wyślij"
+    "send": "Wyślij",
+    "error": "Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres:"
+  },
+  "about": {
+    "download": "Pobierz moje CV"
   }
 }
