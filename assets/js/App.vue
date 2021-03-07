@@ -15,17 +15,17 @@
                 <li><dark-mode-switch /></li>
                 <li><lang-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
-                  <router-link to="/" exact>
+                  <router-link :to="{ name: 'about', params: { 'locale': $i18n.locale } }" exact>
                     {{ about.title }}
                   </router-link>
                 </li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_2">
-                  <router-link to="/projects">
+                  <router-link :to="{ name: 'projects', params: { 'locale': $i18n.locale } }">
                     {{ projectsList.title }}
                   </router-link>
                 </li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_3">
-                  <router-link to="/contact">
+                  <router-link :to="{ name: 'contact', params: { 'locale': $i18n.locale } }">
                     {{ contact.title }}
                   </router-link>
                 </li>

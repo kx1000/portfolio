@@ -25,6 +25,8 @@ export default {
       this.$i18n.locale = this.oppositeLocale;
       axios.defaults.headers.common['Accept-Language'] = this.$i18n.locale;
       this.loadAllPagesContents();
+      this.$route.params.locale = this.$i18n.locale;
+      this.$router.push(this.$route);
     }
   },
   computed: {

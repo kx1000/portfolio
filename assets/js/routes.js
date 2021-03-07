@@ -3,32 +3,52 @@ import Projects from "./components/pages/Projects";
 import Contact from "./components/pages/Contact";
 import Project from "./components/pages/Project";
 import ProjectsList from "./components/ProjectsList";
+import i18n from "./i18n";
 
 export const routes = [
     {
         path: '/',
-        name: 'about',
-        component: About,
-        meta: { order: 1 }
+        redirect: `/${i18n.locale}`
     },
     {
-        path: '/projects',
-        component: Projects,
+        path: '/:locale',
+        component: {
+            template: "<router-view></router-view>"
+        },
+        beforeEnter: (to, from, next) => {
+            i18n.locale = to.params.locale;
+            return next();
+        },
         children: [
             {
                 path: '',
-                component: ProjectsList,
-                meta: { order: 2 }
+                name: 'about',
+                component: About,
+                meta: { order: 1 }
             },
             {
-                path: ':slug',
-                component: Project,
+                path: 'projects',
+                component: Projects,
+                children: [
+                    {
+                        path: '',
+                        name: 'projects',
+                        component: ProjectsList,
+                        meta: { order: 2 }
+                    },
+                    {
+                        path: ':slug',
+                        name: 'project',
+                        component: Project,
+                    },
+                ]
+            },
+            {
+                path: 'contact',
+                name: 'contact',
+                component: Contact,
+                meta: { order: 3 }
             },
         ]
-    },
-    {
-        path: '/contact',
-        component: Contact,
-        meta: { order: 3 }
     },
 ];
