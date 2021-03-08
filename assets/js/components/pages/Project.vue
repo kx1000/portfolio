@@ -1,6 +1,8 @@
 <template>
 <div>
-  <router-link to="/projects" class="back">< powrót</router-link>
+  <router-link :to="{ name: 'projects', params: { locale: $i18n.locale } }" class="back">
+    < powrót
+  </router-link>
   <div v-if="null !== project">
     <h1>
       <vue-typer :text="title" :repeat="0"></vue-typer>

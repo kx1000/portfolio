@@ -12,8 +12,8 @@ export default {
   data() {
     return {
       langs: [
-        process.env.VUE_APP_I18N_LOCALE,
-        process.env.VUE_APP_I18N_FALLBACK_LOCALE,
+        process.env.I18N_LOCALE,
+        process.env.I18N_FALLBACK_LOCALE,
       ]
     }
   },
@@ -31,11 +31,11 @@ export default {
   },
   computed: {
     oppositeLocale() {
-      if (process.env.VUE_APP_I18N_LOCALE === this.$i18n.locale) {
-        return process.env.VUE_APP_I18N_FALLBACK_LOCALE;
+      if (process.env.I18N_LOCALE === this.$i18n.locale) {
+        return process.env.I18N_FALLBACK_LOCALE;
       }
 
-      return process.env.VUE_APP_I18N_LOCALE;
+      return process.env.I18N_LOCALE;
     }
   }
 }

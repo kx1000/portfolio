@@ -5,7 +5,11 @@
     </h1>
     <div class="terminal-alert" v-html="projectsList.description" />
     <div class="image-grid">
-      <router-link v-for="(project, index) in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="item hvr-float">
+      <router-link
+          v-for="(project, index) in projects" v-bind:key="project.id"
+          :to="{ name: 'project', params: {locale: $i18n.locale, slug: project.slug}}"
+          class="item hvr-float"
+      >
         <div :class="'animate__animated animate__zoomIn very_fast_animation_delay_' + index">
           <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
           <div class="title">
