@@ -20,7 +20,7 @@ final class TranslationField implements FieldInterface
             ->setFormType(TranslationsType::class)
             ->setFormTypeOptions(
                 [
-                    'default_locale' => '%locale%',
+                    'default_locale' => $_ENV['I18N_LOCALE'],
                     'fields' => $fieldsConfig,
                 ]
             );

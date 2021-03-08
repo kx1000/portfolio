@@ -3,6 +3,7 @@ import Projects from "./components/pages/Projects";
 import Contact from "./components/pages/Contact";
 import Project from "./components/pages/Project";
 import ProjectsList from "./components/ProjectsList";
+import TransitionRouter from "./components/TransitionRouter";
 import i18n from "./i18n";
 
 export const routes = [
@@ -12,9 +13,7 @@ export const routes = [
     },
     {
         path: '/:locale',
-        component: {
-            template: "<router-view></router-view>"
-        },
+        component: TransitionRouter,
         beforeEnter: (to, from, next) => {
             i18n.locale = to.params.locale;
             return next();

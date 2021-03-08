@@ -35,9 +35,7 @@
         </div>
         <div class="container">
           <hr class="animate__animated animate__fadeInLeft fast_animation_delay_5">
-          <transition :name="transitionName" mode="out-in">
-            <router-view></router-view>
-          </transition>
+          <router-view></router-view>
           <hr class="animate__animated animate__fadeInRight fast_animation_delay_6">
           <div class="center animate__animated animate__zoomIn fast_animation_delay_4">
             <p>
@@ -75,32 +73,17 @@ import LangSwitch from "./components/LangSwitch";
 import {MODULE_PAGES_CONTENTS} from "./store/modules/pagesContents";
 import axios from "axios";
 
-const NEXT_TRANSITION = 'slide-left';
-const PREVIOUS_TRANSITION = 'slide-right';
-
 export default {
   name: 'app',
-  components: {LangSwitch, DarkModeSwitch },
-  data () {
-    return {
-      transitionName: NEXT_TRANSITION,
-    }
+  components: {
+    LangSwitch,
+    DarkModeSwitch
   },
   methods: {
     ...mapActions([
         'loadAllPagesContents',
         'loadProjects',
     ]),
-    updatePageTransition(to, from) {
-      const fromOrder = from.meta.order;
-      const toOrder = to.meta.order;
-      this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
-    },
-  },
-  watch: {
-    '$route' (to, from) {
-      this.updatePageTransition(to, from);
-    }
   },
   mounted() {
     axios.defaults.headers.common['Accept-Language'] = this.$i18n.locale;
