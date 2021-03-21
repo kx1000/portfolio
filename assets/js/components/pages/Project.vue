@@ -1,7 +1,7 @@
 <template>
 <div>
   <router-link :to="{ name: 'projects', params: { locale: $i18n.locale } }" class="back">
-    < powrót
+    < {{ $t('shared.back') }}
   </router-link>
   <div v-if="null !== project">
     <h1>
@@ -57,20 +57,9 @@ export default {
     return {
       project: null,
       imgModalVisible: false,
-      imageUrl: null,
     }
   },
   methods: {
-    updateImageUrl() {
-      if (this.project.animation || this.project.image) {
-        if (this.project.animation) {
-          this.imageUrl = ANIMATIONS_PATH + this.project.animation
-          return;
-        }
-
-        this.imageUrl = IMAGES_PATH + this.project.image
-      }
-    },
     getLinkIcon(icon) {
       if (null === icon) {
         return DEFAULT_LINK_ICON;
@@ -100,8 +89,12 @@ export default {
   },
   mounted() {
     this.project = this.getCurrentProject();
-    this.updateImageUrl();
     this.updatePageTitle();
+  },
+  watch: {
+    projects () {
+      this.project = this.getCurrentProject();
+    },
   },
   computed: {
     ...mapState(MODULE_PAGES_CONTENTS, [
@@ -115,7 +108,18 @@ export default {
       }
 
       return title;
-    }
+    },
+    imageUrl() {
+      if (this.project.animation || this.project.image) {
+        if (this.project.animation) {
+          return ANIMATIONS_PATH + this.project.animation;
+        }
+
+        return IMAGES_PATH + this.project.image;
+      }
+
+      return null;
+    },
   }
 }
 </script>

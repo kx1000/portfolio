@@ -1,11 +1,12 @@
 <template>
   <a class="btn btn-default btn-ghost" @click="changeAppLocale">
-    <img :src="'/images/flags/' + oppositeLocale + '.svg'" height="14"/>
+    <span v-if="areContentsReloading" class="loader"></span>
+    <img v-else :src="'/images/flags/' + oppositeLocale + '.svg'" height="14" :alt="oppositeLocale" />
   </a>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import axios from "axios";
 
 export default {
@@ -30,6 +31,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+        'areContentsReloading',
+    ]),
     oppositeLocale() {
       if (process.env.I18N_LOCALE === this.$i18n.locale) {
         return process.env.I18N_FALLBACK_LOCALE;
@@ -40,7 +44,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -162,6 +162,19 @@ a, button {
   width: 1em;
 }
 
+.btn-ghost > .loader {
+  border: 2px solid var(--font-color);
+  animation: spinAround 500ms infinite linear;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
 @keyframes spinAround {
   from {
     transform: rotate(0deg)

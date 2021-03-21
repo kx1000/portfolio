@@ -1,5 +1,11 @@
 <?php
+
 namespace App\Tests;
+
+use App\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
  * Inherited Methods
@@ -20,7 +26,11 @@ class ApiTester extends \Codeception\Actor
 {
     use _generated\ApiTesterActions;
 
-    /**
-     * Define custom actions here
-     */
+    public function loadAllFixtures()
+    {
+        $this->runSymfonyConsoleCommand('doctrine:fixtures:load', [
+            '--no-interaction' => true,
+            '--env' => 'test',
+        ]);
+    }
 }

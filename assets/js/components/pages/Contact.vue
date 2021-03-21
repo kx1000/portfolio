@@ -9,17 +9,17 @@
         {{ $t('contact.error') }} <b>{{ main.email }}</b>.
       </div>
       <fieldset>
-          <legend>Formularz kontaktowy</legend>
+          <legend>{{ $t('contact.form.title') }}</legend>
           <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">{{ $t('contact.form.email') }}:</label>
             <input v-model="data.email" id="email" name="email" type="email" minlength="5" required>
           </div>
           <div class="form-group">
-            <label for="title">Tytuł:</label>
+            <label for="title">{{ $t('contact.form.subject') }}:</label>
             <input v-model="data.title" id="title" type="text" name="title">
           </div>
           <div class="form-group">
-            <label for="tarea">Treść:</label>
+            <label for="tarea">{{ $t('contact.form.body') }}:</label>
             <textarea v-model="data.body" id="tarea" cols="30" rows="5" name="body" required></textarea>
           </div>
           <div class="form-group">
@@ -31,7 +31,7 @@
                 <font-awesome-icon icon="paper-plane" />
               </span>
               <span>
-                {{ $t('contact.send') }}
+                {{ $t('contact.form.send') }}
               </span>
             </button>
           </div>

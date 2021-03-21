@@ -1,9 +1,23 @@
 {
+  "app": {
+    "footer": {
+      "source": "kod strony"
+    }
+  },
   "contact": {
-    "send": "Wyślij",
+    "form": {
+      "title": "Formularz kontaktowy",
+      "email": "Email",
+      "subject": "Temat",
+      "body": "Treść",
+      "send": "Wyślij"
+    },
     "error": "Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres:"
   },
   "about": {
     "download": "Pobierz moje CV"
+  },
+  "shared": {
+    "back": "powrót"
   }
 }

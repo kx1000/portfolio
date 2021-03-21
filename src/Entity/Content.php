@@ -34,11 +34,6 @@ class Content extends AbstractTranslatable
     private $id;
 
     /**
-     * @Groups("get_page")
-     */
-    private $value;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="contents")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      * @Assert\NotNull
@@ -55,7 +50,7 @@ class Content extends AbstractTranslatable
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ContentTranslation", mappedBy="translatable", fetch="EXTRA_LAZY", indexBy="locale", cascade={"PERSIST"}, orphanRemoval=true)
-     * @Groups({"get_page", "translations"})
+     * @Groups({"translations"})
      */
     protected $translations;
 
@@ -64,6 +59,9 @@ class Content extends AbstractTranslatable
         return $this->id;
     }
 
+    /**
+     * @Groups("get_page")
+     */
     public function getValue(): ?string
     {
         return $this->getTranslation()->getValue();

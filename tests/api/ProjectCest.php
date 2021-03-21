@@ -1,5 +1,7 @@
-<?php namespace App\Tests;
-use App\DataFixtures\ProjectFixtures;
+<?php
+
+namespace App\Tests\api;
+
 use App\Entity\Project;
 use App\Tests\ApiTester;
 
@@ -8,29 +10,56 @@ use App\Tests\ApiTester;
  */
 class ProjectCest
 {
+    public function _before(ApiTester $I)
+    {
+        $I->loadAllFixtures();
+    }
+
     public function getProjects(ApiTester $I)
     {
         $I->haveHttpHeader('accept', 'application/json');
         $I->sendGET('/projects');
         $I->seeResponseCodeIs(200);
         $I->seeResponseContainsJson([
-            "title" => "Projekt 1",
-            "body" => "Test projekt 1.",
-            "image" => null,
-            "animation" => null,
-            "slug" => "project-1",
-            "listOrder" => null,
-            "links" => [
-                [
-                    "icon" => "fab amazon",
-                    "url" => "https://amazon.com",
-                    "title" => "amazon"
-                ]
+            [
+                "title" => "Projekt 1",
+                "image" => null,
+                "animation" => null,
+                "slug" => "project-1",
+                "links" => [
+                    [
+                        "icon" => "fab amazon",
+                        "url" => "https://amazon.com",
+                        "title" => "amazon"
+                    ]
+                ],
+                "technologies" => [
+                    [
+                        "name" => "PHP"
+                    ]
+                ],
+                "year" => "2020 - 2021",
+                "body" => "Test projekt 1. EN"
             ],
-            "technologies" => [
-                [
-                    "name" => "PHP"
-                ]
+            [
+                "title" => "Projekt 2",
+                "image" => null,
+                "animation" => null,
+                "slug" => "project-2",
+                "links" => [],
+                "technologies" => [],
+                "year" => "2010",
+                "body" => "Test projekt 2. EN"
+            ],
+            [
+                "title" => "Projekt 3",
+                "image" => null,
+                "animation" => null,
+                "slug" => "project-3",
+                "links" => [],
+                "technologies" => [],
+                "year" => "2025",
+                "body" => "Test projekt 3. EN"
             ]
         ]);
     }

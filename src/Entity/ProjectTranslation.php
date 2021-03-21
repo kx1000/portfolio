@@ -3,7 +3,6 @@
 
 namespace App\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Locastic\ApiPlatformTranslationBundle\Model\AbstractTranslation;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -12,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  */
-class ContentTranslation extends AbstractTranslation
+class ProjectTranslation extends AbstractTranslation
 {
     /**
      * @ORM\Id()
@@ -22,33 +21,32 @@ class ContentTranslation extends AbstractTranslation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="translations")
      * @Assert\NotNull
      */
     protected $translatable;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Assert\Length(max=1500)
-     * @Groups({"get_page", "translations"})
+     * @Groups({"read_project", "translations"})
      */
-    private $value;
+    private $body;
 
     /**
      * @ORM\Column(type="string")
-     *
-     * @Groups({"get_page", "translations"})
+     * @Groups({"read_project", "translations"})
      */
     protected $locale;
 
-    public function getValue(): ?string
+    public function getBody(): ?string
     {
-        return $this->value;
+        return $this->body;
     }
 
-    public function setValue(?string $value): self
+    public function setBody(string $body): self
     {
-        $this->value = $value;
+        $this->body = $body;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="terminal">
-      <div v-if="allContentsCount === contentsLoadedCount" class="fadeIn">
+      <div v-if="allContentsCount <= contentsLoadedCount" class="fadeIn">
         <div class="container">
           <div class="terminal-nav">
             <div class="terminal-logo">
@@ -39,7 +39,7 @@
           <hr class="animate__animated animate__fadeInRight fast_animation_delay_6">
           <div class="center animate__animated animate__zoomIn fast_animation_delay_4">
             <p>
-              {{ main.footer }} <a :href="main.pageSource" target="_blank">kod strony</a>
+              {{ main.footer }} • <a :href="main.pageSource" target="_blank">{{ $t('app.footer.source') }}</a>
             </p>
           </div>
         </div>
@@ -88,7 +88,6 @@ export default {
   mounted() {
     axios.defaults.headers.common['Accept-Language'] = this.$i18n.locale;
     this.loadAllPagesContents();
-    document.title = this.$route.meta.title;
   },
   computed: {
     ...mapState(MODULE_PAGES_CONTENTS, [
