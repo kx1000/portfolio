@@ -18,6 +18,9 @@
               //{{ project.year }}
             </small>
           </div>
+          <div style="margin-top: 3px;">
+            <small><b>{{ project.subtitle }}</b></small>
+          </div>
         </div>
       </router-link>
     </div>

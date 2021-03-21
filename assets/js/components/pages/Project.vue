@@ -1,7 +1,7 @@
 <template>
 <div>
   <router-link :to="{ name: 'projects', params: { locale: $i18n.locale } }" class="back">
-    < {{ $t('shared.back') }}
+    <font-awesome-icon icon="chevron-left" /> {{ $t('shared.back') }}
   </router-link>
   <div v-if="null !== project">
     <h1>
@@ -102,6 +102,10 @@ export default {
     ]),
     title() {
       let title = this.project.title;
+
+      if (this.project.subtitle) {
+        title += ' ∙ ' + this.project.subtitle;
+      }
 
       if (this.project.year) {
         title += ' ∙ ' + this.project.year;
