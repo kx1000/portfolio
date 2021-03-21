@@ -5,7 +5,7 @@
           <div class="terminal-nav">
             <div class="terminal-logo">
               <div class="logo terminal-prompt animate__animated animate__zoomIn fast_animation">
-                <a class="no-style" href="/">
+                <a class="no-style special-color" href="/">
                   {{ main.header }}
                 </a>
               </div>
@@ -45,7 +45,7 @@
         </div>
         <div class="right-side-container animate__animated animate__slideInUp fast_animation_delay_7">
           <div class="link">
-            <a :href="'mailto:' + main.email">
+            <a class="special-color" :href="'mailto:' + main.email">
               {{ main.email }}
             </a>
           </div>
@@ -54,7 +54,7 @@
         <div class="left-side-container animate__animated animate__slideInDown fast_animation_delay_8">
           <div class="line"></div>
           <div class="link">
-            <a :href="'tel:' + main.phone">
+            <a class="special-color" :href="'tel:' + main.phone">
               {{ main.phone }}
             </a>
           </div>

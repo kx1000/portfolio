@@ -158,6 +158,11 @@ export default {
 
 .technologies blockquote div {
   font-style: italic;
-  color: #53bd8c;
+  color: #629755;
+}
+
+.technologies blockquote::after {
+  content: "*";
+  color: #629755;
 }
 </style>
