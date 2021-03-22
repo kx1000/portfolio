@@ -121,13 +121,6 @@ class Project extends AbstractTranslatable
      */
     protected $translations;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(max=255)
-     * @Groups("read_project")
-     */
-    private $subtitle;
-
     public function __construct()
     {
         parent::__construct();
@@ -149,6 +142,21 @@ class Project extends AbstractTranslatable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @Groups("read_project")
+     */
+    public function getSubtitle(): ?string
+    {
+        return $this->getTranslation()->getSubtitle();
+    }
+
+    public function setSubtitle(?string $subtitle): self
+    {
+        $this->getTranslation()->setSubtitle($subtitle);
 
         return $this;
     }
@@ -345,17 +353,5 @@ class Project extends AbstractTranslatable
     protected function createTranslation(): TranslationInterface
     {
         return new ProjectTranslation();
-    }
-
-    public function getSubtitle(): ?string
-    {
-        return $this->subtitle;
-    }
-
-    public function setSubtitle(?string $subtitle): self
-    {
-        $this->subtitle = $subtitle;
-
-        return $this;
     }
 }

@@ -27,6 +27,13 @@ class ProjectTranslation extends AbstractTranslation
     protected $translatable;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max=255)
+     * @Groups({"read_project", "translations"})
+     */
+    private $subtitle;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      * @Assert\Length(max=1500)
      * @Groups({"read_project", "translations"})
@@ -38,6 +45,18 @@ class ProjectTranslation extends AbstractTranslation
      * @Groups({"read_project", "translations"})
      */
     protected $locale;
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(?string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
 
     public function getBody(): ?string
     {

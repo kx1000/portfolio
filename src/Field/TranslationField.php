@@ -18,11 +18,9 @@ final class TranslationField implements FieldInterface
             ->setProperty($propertyName)
             ->setLabel($label)
             ->setFormType(TranslationsType::class)
-            ->setFormTypeOptions(
-                [
-                    'default_locale' => $_ENV['I18N_LOCALE'],
-                    'fields' => $fieldsConfig,
-                ]
-            );
+            ->setFormTypeOptions([
+                'default_locale' => $_ENV['I18N_LOCALE'],
+                'fields' => $fieldsConfig,
+            ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Project;
+use App\Field\TranslationField;
 use App\Form\LinkType;
 use App\Form\TechnologyType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -15,6 +16,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProjectCrudController extends AbstractCrudController
@@ -51,9 +54,17 @@ class ProjectCrudController extends AbstractCrudController
             IntegerField::new('listOrder'),
             TextField::new('slug'),
             TextField::new('title'),
-            TextField::new('subtitle'),
             TextField::new('year'),
-            TextareaField::new('body'),
+            TranslationField::new('translations', 'translations', [
+                'subtitle' => [
+                    'field_type' => TextType::class,
+                    'required' => false,
+                ],
+                'body' => [
+                    'field_type' => TextareaType::class,
+                    'required' => true,
+                ],
+            ])->hideOnIndex(),
             CollectionField::new('links')
                 ->setEntryType(LinkType::class)
                 ->setFormTypeOption('by_reference', false),
