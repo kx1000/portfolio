@@ -4,11 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Page;
 use App\Form\ContentType;
-use App\Form\LinkType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class PageCrudController extends AbstractCrudController
@@ -18,6 +16,14 @@ class PageCrudController extends AbstractCrudController
         return Page::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setFormThemes([
+                '@A2lixTranslationForm/bootstrap_4_layout.html.twig',
+                '@EasyAdmin/crud/form_theme.html.twig',
+            ]);
+    }
 
     public function configureFields(string $pageName): iterable
     {

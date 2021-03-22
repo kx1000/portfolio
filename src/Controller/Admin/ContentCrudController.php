@@ -6,17 +6,25 @@ use App\Entity\Content;
 use App\Entity\Page;
 use App\Field\TranslationField;
 use App\Form\ContentType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ContentCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
         return Content::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setFormThemes([
+                '@A2lixTranslationForm/bootstrap_4_layout.html.twig',
+                '@EasyAdmin/crud/form_theme.html.twig',
+            ]);
     }
 
     public function configureFields(string $pageName): iterable

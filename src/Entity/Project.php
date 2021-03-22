@@ -29,7 +29,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *             "output"=false,
  *         },
  *     },
- *     attributes={"order"={"listOrder": "ASC"}}
+ *     attributes={"order"={"listOrder": "DESC"}}
  * )
  * @ApiFilter(SearchFilter::class, properties={"slug": "exact"})
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
