@@ -166,7 +166,7 @@ export default {
 }
 
 .technologies blockquote::after {
-  content: "*";
+  content: "*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*\A*";
   color: #629755;
 }
 </style>

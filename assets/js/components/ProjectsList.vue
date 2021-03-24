@@ -13,13 +13,10 @@
         <div :class="'animate__animated animate__zoomIn very_fast_animation_delay_' + index">
           <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
           <div class="title">
-            {{ project.title }}
+            {{ createTileTitleFromProject(project) }}
             <small v-if="project.year" class="text-secondary">
               //{{ project.year }}
             </small>
-          </div>
-          <div style="margin-top: 3px;">
-            <small><b>{{ project.subtitle }}</b></small>
           </div>
         </div>
       </router-link>
@@ -42,12 +39,24 @@
 import {mapState} from "vuex";
 import {MODULE_PAGES_CONTENTS} from "../store/modules/pagesContents";
 
+const TITLE_DIVIDER = ' · ';
+
 export default {
   computed: {
     ...mapState(MODULE_PAGES_CONTENTS, [
       'projectsList',
       'projects',
     ])
+  },
+  methods: {
+    createTileTitleFromProject(project) {
+      let tileTitle = project.title;
+      if (null !== project.subtitle) {
+        tileTitle += TITLE_DIVIDER + project.subtitle;
+      }
+
+      return tileTitle;
+    }
   },
   created() {
     document.title = this.projectsList.title;
