@@ -1,7 +1,7 @@
 <template>
   <a class="btn btn-default btn-ghost" @click="changeAppLocale">
     <span v-if="areContentsReloading" class="loader"></span>
-    <img v-else :src="'/images/flags/' + oppositeLocale + '.svg'" height="14" width="14" :alt="oppositeLocale" />
+    <img v-else class="flag-image" :src="'/images/flags/' + oppositeLocale + '.svg'" :alt="oppositeLocale" />
   </a>
 </template>
 
@@ -44,3 +44,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.flag-image {
+  width: 14px;
+  height: 14px;
+}
+</style>
