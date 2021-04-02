@@ -18,6 +18,14 @@
             {{ $t('about.download') }}
           </span>
         </a>
+        <a :href="about.linkedin" class="btn btn-default" target="_blank">
+          <span class="icon">
+            <font-awesome-icon :icon="['fab', 'linkedin']" />
+          </span>
+          <span>
+            {{ $t('about.linkedin') }}
+          </span>
+        </a>
       </div>
     </div>
   </div>

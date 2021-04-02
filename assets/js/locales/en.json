@@ -15,7 +15,8 @@
     "error": "The message could not be sent. Send a message using your email client to the following address:"
   },
   "about": {
-    "download": "Download my resume"
+    "download": "Resume",
+    "linkedin": "LinkedIn"
   },
   "shared": {
     "back": "back"

@@ -37,7 +37,7 @@ class ProjectCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setDefaultSort(['listOrder' => 'ASC'])
+            ->setDefaultSort(['listOrder' => 'DESC'])
             ->setFormThemes([
                 '@A2lixTranslationForm/bootstrap_4_layout.html.twig',
                 '@EasyAdmin/crud/form_theme.html.twig',

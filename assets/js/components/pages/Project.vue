@@ -19,7 +19,7 @@
             </div>
           </blockquote>
         </div>
-        <div v-html="project.body"></div>
+        <nl2br tag="div" :text="project.body" />
         <div class="links">
           <a v-for="link in project.links" :href="link.url" target="_blank">
             <font-awesome-icon :icon="getLinkIcon(link.icon)" /> {{ link.title }}

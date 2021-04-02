@@ -14,10 +14,10 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-       $this->persistMainPageContents($manager);
-       $this->persistAboutPageContents($manager);
-       $this->persistProjectsPageContents($manager);
-       $this->persistContactPageContents($manager);
+        $this->persistMainPageContents($manager);
+        $this->persistAboutPageContents($manager);
+        $this->persistProjectsPageContents($manager);
+        $this->persistContactPageContents($manager);
 
         $manager->flush();
     }
@@ -120,6 +120,15 @@ class ContentFixtures extends Fixture implements DependentFixtureInterface
         $contentCv->setCurrentLocale(self::LOCALE_EN);
         $contentCv->setValue('https://picsum.photos/300/300');
         $manager->persist($contentCv);
+
+        $contentLinkedIn = (new Content())
+            ->setPage($aboutPage)
+            ->setName('linkedin');
+        $contentLinkedIn->setCurrentLocale(self::LOCALE_PL);
+        $contentLinkedIn->setValue('https://www.linkedin.com/in/kacper-rogula/');
+        $contentLinkedIn->setCurrentLocale(self::LOCALE_EN);
+        $contentLinkedIn->setValue('https://www.linkedin.com/in/kacper-rogula/');
+        $manager->persist($contentLinkedIn);
     }
 
     private function persistProjectsPageContents(ObjectManager $manager): void
