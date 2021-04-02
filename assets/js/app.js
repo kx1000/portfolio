@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from "vue-router"
 import { routes } from "./routes"
-import store from "./store";
+import store from "./store/index";
 
 import VueTyperPlugin from 'vue-typer'
 import Lightbox from 'vue-easy-lightbox'
@@ -17,7 +17,8 @@ import 'terminal.css'
 import 'animate.css'
 import 'hover.css'
 import 'spinkit/spinkit.min.css'
-import '../css/app.scss'
+import '../scss/app.scss'
+import i18n from "./i18n";
 
 library.add(fas);
 library.add(fab);
@@ -34,5 +35,6 @@ new Vue({
     el: '#app',
     router,
     store,
+    i18n,
     render: h => h(App)
 })

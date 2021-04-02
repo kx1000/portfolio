@@ -5,11 +5,15 @@
     </h1>
     <div class="terminal-alert" v-html="projectsList.description" />
     <div class="image-grid">
-      <router-link v-for="(project, index) in projects" v-bind:key="project.id" :to="'/projects/' + project.slug" class="item hvr-float">
+      <router-link
+          v-for="(project, index) in projects" v-bind:key="project.id"
+          :to="{ name: 'project', params: {locale: $i18n.locale, slug: project.slug}}"
+          class="item hvr-float"
+      >
         <div :class="'animate__animated animate__zoomIn very_fast_animation_delay_' + index">
           <img v-if="project.image" :src="'/projects/images/' + project.image" :alt="project.title" width="auto" height="auto">
           <div class="title">
-            {{ project.title }}
+            {{ createTileTitleFromProject(project) }}
             <small v-if="project.year" class="text-secondary">
               //{{ project.year }}
             </small>
@@ -33,18 +37,29 @@
 
 <script>
 import {mapState} from "vuex";
+import {MODULE_PAGES_CONTENTS} from "../store/modules/pagesContents";
+
+const TITLE_DIVIDER = ' · ';
 
 export default {
-  name: "ProjectsList",
-  data() {
-    return {
-    }
-  },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'projectsList',
       'projects',
     ])
+  },
+  methods: {
+    createTileTitleFromProject(project) {
+      let tileTitle = project.title;
+      if (null !== project.subtitle) {
+        tileTitle += TITLE_DIVIDER + project.subtitle;
+      }
+
+      return tileTitle;
+    }
+  },
+  created() {
+    document.title = this.projectsList.title;
   }
 }
 </script>

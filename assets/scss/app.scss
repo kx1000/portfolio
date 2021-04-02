@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@100;200;300;400&display=swap');
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('JetBrainsMono-Light.ttf') format('truetype');
+}
 
 body {
   transition: .6s;
-  --global-font-size: 15px;
+  --global-font-size: 14px;
   --global-line-height: 1.4em;
   --global-space: 10px;
-  --font-stack: 'Inconsolata', monospace;
-  --mono-font-stack: 'Inconsolata', monospace;
-  --page-width: 60em;
+  --font-stack: 'JetBrains Mono', monospace;
+  --mono-font-stack: 'JetBrains Mono', monospace;
+  --page-width: 65em;
   --input-style: solid;
   --display-h1-decoration: none;
 }
@@ -20,18 +23,31 @@ a, button {
   font-size: 24px;
   line-height: 0;
 }
-
+:root {
+  --secondary-color: #A9B7C6;
+  --tertiary-color: #660E7A;
+  --primary-color: black;
+  --error-color: #FF0000;
+  --special-color: #0000FF;
+}
 .dark {
   --background-color: #222225;
   --font-color: #e8e9ed;
   --invert-font-color: #222225;
-  --secondary-color: #a3abba;
-  --tertiary-color: #a3abba;
-  --primary-color: #62c4ff;
-  --error-color: #ff3c74;
   --progress-bar-background: #3f3f44;
-  --progress-bar-fill: #62c4ff;
+  --progress-bar-fill: #0000FF;
   --code-bg-color: #3f3f44;
+  --special-color: #ffc66d;
+  --tertiary-color: #9876AA;
+  --primary-color: #CC7832;
+}
+
+.special-color {
+  color: var(--special-color);
+
+  &:hover {
+    background: var(--special-color);
+  }
 }
 
 .terminal-menu li a.router-link-active {
@@ -78,7 +94,8 @@ a, button {
 }
 
 .vue-typer .custom.char.typed {
-  color: var(--font-color);
+  color: var(--tertiary-color);
+  text-transform: uppercase;
 }
 
 .about-grid {
@@ -152,6 +169,19 @@ a, button {
 .loader {
   animation: spinAround 500ms infinite linear;
   border: 2px solid var(--invert-font-color);
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+.btn-ghost > .loader {
+  border: 2px solid var(--font-color);
+  animation: spinAround 500ms infinite linear;
   border-radius: 290486px;
   border-right-color: transparent;
   border-top-color: transparent;

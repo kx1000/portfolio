@@ -1,4 +1,7 @@
-<?php namespace App\Tests;
+<?php
+
+namespace App\Tests\api;
+
 use App\Entity\Message;
 use App\Tests\ApiTester;
 
@@ -7,6 +10,11 @@ use App\Tests\ApiTester;
  */
 class MessageCest
 {
+    public function _before(ApiTester $I)
+    {
+        $I->loadAllFixtures();
+    }
+
     public function postMessage(ApiTester $I)
     {
         $I->haveHttpHeader('Content-Type', 'application/json');

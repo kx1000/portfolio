@@ -15,7 +15,15 @@
             <font-awesome-icon icon="file-pdf" />
           </span>
           <span>
-            Pobierz moje CV
+            {{ $t('about.download') }}
+          </span>
+        </a>
+        <a :href="about.linkedin" class="btn btn-default" target="_blank">
+          <span class="icon">
+            <font-awesome-icon :icon="['fab', 'linkedin']" />
+          </span>
+          <span>
+            {{ $t('about.linkedin') }}
           </span>
         </a>
       </div>
@@ -25,17 +33,16 @@
 
 <script>
 import {mapState} from "vuex";
+import {MODULE_PAGES_CONTENTS} from "../../store/modules/pagesContents";
 
 export default {
-  name: "About",
-  data () {
-    return {
-    }
-  },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'about'
     ])
+  },
+  created() {
+    document.title = this.about.title;
   }
 }
 </script>

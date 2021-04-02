@@ -1,27 +1,35 @@
 {
-  "devDependencies": {
-    "@symfony/webpack-encore": "^0.31.0",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^9.0.1",
-    "vue-loader": "^15",
-    "vue-template-compiler": "^2.6.11",
-    "webpack-notifier": "^1.6.0"
+  "scripts": {
+    "i18n:report": "vue-cli-service i18n:report --src \\\"./src/**/*.?(js|vue)\\\" --locales \\\"assets/js/locales/**/*.json\\\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/vue-fontawesome": "^0.1.10",
+    "@vue/cli-shared-utils": "^4.5.11",
     "animate.css": "^4.1.0",
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "hover.css": "^2.3.2",
     "spinkit": "^2.0.1",
     "terminal.css": "^0.7.1",
     "vue": "^2.5",
     "vue-easy-lightbox": "^0.14.0",
+    "vue-i18n": "^8.22.3",
     "vue-nl2br": "^0.1.2",
     "vue-router": "^3.4.3",
     "vue-typer": "^1.2.0",
     "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@intlify/vue-i18n-loader": "^1.0.0",
+    "@symfony/webpack-encore": "^0.31.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.1",
+    "vue-cli-plugin-i18n": "~2.0.0",
+    "vue-loader": "^15",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-notifier": "^1.6.0"
   }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Content;
 use App\Entity\File;
 use App\Entity\Message;
 use App\Entity\Page;
@@ -35,6 +36,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToUrl('Home', 'fas fa-home', '/');
         yield MenuItem::linkToCrud('Pages', 'fas fa-sticky-note', Page::class);
+        yield MenuItem::linkToCrud('Contents', 'fas fa-sticky-note', Content::class);
         yield MenuItem::linkToCrud('Projects', 'fas fa-project-diagram', Project::class);
         yield MenuItem::linkToCrud('Messages', 'fas fa-envelope', Message::class);
         yield MenuItem::linkToCrud('Files', 'far fa-image', File::class);

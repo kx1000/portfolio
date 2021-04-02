@@ -1,14 +1,24 @@
-<?php namespace App\Tests;
+<?php
+
+namespace App\Tests\api;
+
 use App\Entity\Page;
+use App\Tests\ApiTester;
 
 /**
  * php vendor/bin/codecept run api PageCest
  */
 class PageCest
 {
+    public function _before(ApiTester $I)
+    {
+        $I->loadAllFixtures();
+    }
+
     public function filterPage(ApiTester $I)
     {
         $I->haveHttpHeader('accept', 'application/json');
+        $I->haveHttpHeader('Accept-Language', 'pl');
         $I->sendGET('/pages?name=main');
         $I->seeResponseCodeIs(200);
         $I->seeResponseContainsJson([
@@ -23,7 +33,7 @@ class PageCest
                     "name" => "footer"
                 ],
                 [
-                    "value" => "https://bitbucket.org/k1002/portfolio-sf/",
+                    "value" => "https://github.com/kx1000/portfolio",
                     "name" => "pageSource"
                 ],
                 [

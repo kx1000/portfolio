@@ -1,0 +1,24 @@
+{
+  "app": {
+    "footer": {
+      "source": "source"
+    }
+  },
+  "contact": {
+   "form": {
+     "title": "Contact form",
+     "email": "Email",
+     "subject": "Subject",
+     "body": "Body",
+     "send": "Send"
+   },
+    "error": "The message could not be sent. Send a message using your email client to the following address:"
+  },
+  "about": {
+    "download": "Resume",
+    "linkedin": "LinkedIn"
+  },
+  "shared": {
+    "back": "back"
+  }
+}

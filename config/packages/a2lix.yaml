@@ -1,0 +1,6 @@
+a2lix_translation_form:
+  locale_provider: default
+  locales:
+    - '%env(resolve:I18N_LOCALE)%'
+    - '%env(resolve:I18N_FALLBACK_LOCALE)%'
+  default_locale: '%env(resolve:I18N_LOCALE)%'

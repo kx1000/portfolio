@@ -26,4 +26,4 @@ class ApiServiceClass
     }
 }
 
-export const ApiService = new ApiServiceClass();
+export const apiService = new ApiServiceClass();

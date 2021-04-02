@@ -6,20 +6,20 @@
     <form v-if="false === isSent" @submit.prevent="onSubmit">
       <div v-html="contact.description" class="terminal-alert"></div>
       <div v-if="isError" class="terminal-alert terminal-alert-error">
-        Nie udało się wysłać wiadomości. Wyślij wiadomość kożystając ze swojego klienta pocztowego na adres: <b>{{ main.email }}</b>.
+        {{ $t('contact.error') }} <b>{{ main.email }}</b>.
       </div>
       <fieldset>
-          <legend>Formularz kontaktowy</legend>
+          <legend>{{ $t('contact.form.title') }}</legend>
           <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">{{ $t('contact.form.email') }}:</label>
             <input v-model="data.email" id="email" name="email" type="email" minlength="5" required>
           </div>
           <div class="form-group">
-            <label for="title">Tytuł:</label>
+            <label for="title">{{ $t('contact.form.subject') }}:</label>
             <input v-model="data.title" id="title" type="text" name="title">
           </div>
           <div class="form-group">
-            <label for="tarea">Treść:</label>
+            <label for="tarea">{{ $t('contact.form.body') }}:</label>
             <textarea v-model="data.body" id="tarea" cols="30" rows="5" name="body" required></textarea>
           </div>
           <div class="form-group">
@@ -31,7 +31,7 @@
                 <font-awesome-icon icon="paper-plane" />
               </span>
               <span>
-                Wyślij
+                {{ $t('contact.form.send') }}
               </span>
             </button>
           </div>
@@ -48,9 +48,9 @@
 <script>
 import axios from 'axios'
 import {mapState} from "vuex";
+import {MODULE_PAGES_CONTENTS} from "../../store/modules/pagesContents";
 
 export default {
-  name: "Contact",
   data() {
     return {
       isSending: false,
@@ -82,10 +82,13 @@ export default {
     }
   },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
       'contact',
       'main',
     ])
+  },
+  created() {
+    document.title = this.contact.title;
   }
 }
 </script>

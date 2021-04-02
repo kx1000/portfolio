@@ -1,4 +1,10 @@
 {
+    "a2lix/auto-form-bundle": {
+        "version": "0.3.3"
+    },
+    "a2lix/translation-form-bundle": {
+        "version": "3.0.7"
+    },
     "api-platform/api-pack": {
         "version": "v1.2.2"
     },
@@ -221,6 +227,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.4"
+    },
+    "locastic/api-platform-translation-bundle": {
+        "version": "v1.3.3"
     },
     "monolog/monolog": {
         "version": "2.1.1"

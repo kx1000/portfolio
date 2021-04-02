@@ -47,7 +47,7 @@ class Page
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Content::class, mappedBy="page", cascade={"persist"}, orphanRemoval=true)
      * @Groups("get_page")
      */
     private $contents;
@@ -55,6 +55,11 @@ class Page
     public function __construct()
     {
         $this->contents = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 
     public function getId(): ?int

@@ -10,6 +10,8 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Locastic\ApiPlatformTranslationBundle\Model\AbstractTranslatable;
+use Locastic\ApiPlatformTranslationBundle\Model\TranslationInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -27,13 +29,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *             "output"=false,
  *         },
  *     },
- *     attributes={"order"={"listOrder": "ASC"}}
+ *     attributes={"order"={"listOrder": "DESC"}}
  * )
  * @ApiFilter(SearchFilter::class, properties={"slug": "exact"})
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
  * @Vich\Uploadable()
  */
-class Project
+class Project extends AbstractTranslatable
 {
     /**
      * @ORM\Id()
@@ -49,13 +51,6 @@ class Project
      * @Groups("read_project")
      */
     private $title;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(max=1500)
-     * @Groups("read_project")
-     */
-    private $body;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -97,7 +92,7 @@ class Project
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups("read_project")
+     * @Assert\Type("int")
      */
     private $listOrder;
 
@@ -120,8 +115,15 @@ class Project
      */
     private $year;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProjectTranslation", mappedBy="translatable", fetch="EXTRA_LAZY", indexBy="locale", cascade={"PERSIST"}, orphanRemoval=true)
+     * @Groups({"translations"})
+     */
+    protected $translations;
+
     public function __construct()
     {
+        parent::__construct();
         $this->vichUpdatedAt = new \DateTime();
         $this->links = new ArrayCollection();
         $this->technologies = new ArrayCollection();
@@ -144,14 +146,32 @@ class Project
         return $this;
     }
 
+    /**
+     * @Groups("read_project")
+     */
+    public function getSubtitle(): ?string
+    {
+        return $this->getTranslation()->getSubtitle();
+    }
+
+    public function setSubtitle(?string $subtitle): self
+    {
+        $this->getTranslation()->setSubtitle($subtitle);
+
+        return $this;
+    }
+
+    /**
+     * @Groups("read_project")
+     */
     public function getBody(): ?string
     {
-        return $this->body;
+        return $this->getTranslation()->getBody();
     }
 
     public function setBody(?string $body): self
     {
-        $this->body = $body;
+        $this->getTranslation()->setBody($body);
 
         return $this;
     }
@@ -328,5 +348,10 @@ class Project
         $this->year = $year;
 
         return $this;
+    }
+
+    protected function createTranslation(): TranslationInterface
+    {
+        return new ProjectTranslation();
     }
 }

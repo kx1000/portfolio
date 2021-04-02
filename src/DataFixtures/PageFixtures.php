@@ -9,111 +9,31 @@ use Doctrine\Persistence\ObjectManager;
 
 class PageFixtures extends Fixture
 {
+    const REF_MAIN = 'MAIN';
+    const REF_ABOUT = 'ABOUT';
+    const REF_PROJECTS = 'PROJECTS';
+    const REF_CONTACT = 'CONTACT';
+
     public function load(ObjectManager $manager)
     {
         $mainPage = (new Page())
-            ->setName('main')
-            ->addContent(
-                (new Content())
-                    ->setName('header')
-                    ->setValue('kacper.tech')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('footer')
-                    ->setValue('Kacper Rogula 2020')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('pageSource')
-                    ->setValue('https://bitbucket.org/k1002/portfolio-sf/')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('phone')
-                    ->setValue('+48 574 189 841')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('email')
-                    ->setValue('kacper.rogula@gmail.com')
-            )
-        ;
+            ->setName('main');
+        $this->addReference(self::REF_MAIN, $mainPage);
         $manager->persist($mainPage);
 
         $aboutPage = (new Page())
-            ->setName('about')
-            ->addContent(
-                (new Content())
-                    ->setName('title')
-                    ->setValue('00. O mnie')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('welcome')
-                    ->setValue('Cześć 👋')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('image')
-                    ->setValue('https://picsum.photos/300/300')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('description')
-                    ->setValue('Mój przykładowy opis :)')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('cv')
-                    ->setValue('https://picsum.photos/300/300')
-            )
-        ;
+            ->setName('about');
+        $this->addReference(self::REF_ABOUT, $aboutPage);
         $manager->persist($aboutPage);
 
         $projectsPage = (new Page())
-            ->setName('projects')
-            ->addContent(
-                (new Content())
-                    ->setName('title')
-                    ->setValue('Projekty')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('description')
-                    ->setValue('Zobacz jakimi projektami programistycznymi zajmowałem się hobbystycznie. 👇')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('githubLink')
-                    ->setValue('https://github.com/kx1000')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('githubName')
-                    ->setValue('GitHub.com/kx1000')
-            )
-        ;
+            ->setName('projects');
+        $this->addReference(self::REF_PROJECTS, $projectsPage);
         $manager->persist($projectsPage);
 
         $contactPage = (new Page())
-            ->setName('contact')
-            ->addContent(
-                (new Content())
-                    ->setName('title')
-                    ->setValue('Kontakt')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('description')
-                    ->setValue('Skontaktuj się ze mną wysyłając wiadomość na adres kacper.rogula@gmail.com lub po prostu skorzystaj z formularza poniżej. 👇😉')
-            )
-            ->addContent(
-                (new Content())
-                    ->setName('sentConfirmation')
-                    ->setValue('Twoja wiadomość została przesłana! 🚀 👏')
-            )
-        ;
+            ->setName('contact');
+        $this->addReference(self::REF_CONTACT, $contactPage);
         $manager->persist($contactPage);
 
         $manager->flush();

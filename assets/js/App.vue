@@ -1,11 +1,11 @@
 <template>
   <div class="terminal">
-      <div v-if="actionsCount === contentsLoadedCount" class="fadeIn">
+      <div v-if="allContentsCount <= contentsLoadedCount" class="fadeIn">
         <div class="container">
           <div class="terminal-nav">
             <div class="terminal-logo">
               <div class="logo terminal-prompt animate__animated animate__zoomIn fast_animation">
-                <a class="no-style" href="/">
+                <a class="no-style special-color" href="/">
                   {{ main.header }}
                 </a>
               </div>
@@ -13,19 +13,20 @@
             <nav class="terminal-menu">
               <ul>
                 <li><dark-mode-switch /></li>
+                <li><lang-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
-                  <router-link to="/" exact>
-                    00. O mnie
+                  <router-link :to="{ name: 'about', params: { 'locale': $i18n.locale } }" exact>
+                    {{ about.title }}
                   </router-link>
                 </li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_2">
-                  <router-link to="/projects">
-                    01. Projekty
+                  <router-link :to="{ name: 'projects', params: { 'locale': $i18n.locale } }">
+                    {{ projectsList.title }}
                   </router-link>
                 </li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_3">
-                  <router-link to="/contact">
-                    02. Kontakt
+                  <router-link :to="{ name: 'contact', params: { 'locale': $i18n.locale } }">
+                    {{ contact.title }}
                   </router-link>
                 </li>
               </ul>
@@ -34,19 +35,17 @@
         </div>
         <div class="container">
           <hr class="animate__animated animate__fadeInLeft fast_animation_delay_5">
-          <transition :name="transitionName" mode="out-in">
-            <router-view></router-view>
-          </transition>
+          <router-view></router-view>
           <hr class="animate__animated animate__fadeInRight fast_animation_delay_6">
           <div class="center animate__animated animate__zoomIn fast_animation_delay_4">
             <p>
-              {{ main.footer }} <a :href="main.pageSource" target="_blank">kod strony</a>
+              {{ main.footer }} • <a :href="main.pageSource" target="_blank">{{ $t('app.footer.source') }}</a>
             </p>
           </div>
         </div>
         <div class="right-side-container animate__animated animate__slideInUp fast_animation_delay_7">
           <div class="link">
-            <a :href="'mailto:' + main.email">
+            <a class="special-color" :href="'mailto:' + main.email">
               {{ main.email }}
             </a>
           </div>
@@ -55,7 +54,7 @@
         <div class="left-side-container animate__animated animate__slideInDown fast_animation_delay_8">
           <div class="line"></div>
           <div class="link">
-            <a :href="'tel:' + main.phone">
+            <a class="special-color" :href="'tel:' + main.phone">
               {{ main.phone }}
             </a>
           </div>
@@ -69,55 +68,37 @@
 
 <script>
 import DarkModeSwitch from "./components/DarkModeSwitch";
-import {mapState} from 'vuex'
-import {actions} from "./store";
-
-const NEXT_TRANSITION = 'slide-left';
-const PREVIOUS_TRANSITION = 'slide-right';
+import {mapActions, mapState} from 'vuex'
+import LangSwitch from "./components/LangSwitch";
+import {MODULE_PAGES_CONTENTS} from "./store/modules/pagesContents";
+import axios from "axios";
 
 export default {
   name: 'app',
-  components: { DarkModeSwitch },
-  data () {
-    return {
-      actionsCount: null,
-      transitionName: NEXT_TRANSITION,
-    }
+  components: {
+    LangSwitch,
+    DarkModeSwitch
   },
   methods: {
-    updateNextPageTitle(to) {
-      document.title = to.meta.title;
-    },
-    updatePageTransition(to, from) {
-      const fromOrder = from.meta.order;
-      const toOrder = to.meta.order;
-      this.transitionName = toOrder < fromOrder ? PREVIOUS_TRANSITION : NEXT_TRANSITION
-    },
-    fetchDataFromApi() {
-      for (const action in actions) {
-        this.$store.dispatch(action);
-      }
-    },
-    updateStoreActionsCount() {
-      this.actionsCount = Object.keys(actions).length;
-    },
-  },
-  watch: {
-    '$route' (to, from) {
-      this.updateNextPageTitle(to);
-      this.updatePageTransition(to, from);
-    }
+    ...mapActions([
+        'loadAllPagesContents',
+        'loadProjects',
+    ]),
   },
   mounted() {
-    this.updateStoreActionsCount();
-    this.fetchDataFromApi();
-
-    document.title = this.$route.meta.title;
+    axios.defaults.headers.common['Accept-Language'] = this.$i18n.locale;
+    this.loadAllPagesContents();
   },
   computed: {
-    ...mapState([
+    ...mapState(MODULE_PAGES_CONTENTS, [
         'main',
-        'contentsLoadedCount'
+        'about',
+        'projectsList',
+        'contact',
+    ]),
+    ...mapState([
+        'contentsLoadedCount',
+        'allContentsCount',
     ])
   }
 }
