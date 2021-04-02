@@ -12,8 +12,7 @@
             </div>
             <nav class="terminal-menu">
               <ul>
-                <li><dark-mode-switch /></li>
-                <li><lang-switch /></li>
+                <li><dark-mode-switch style="margin-right: 20px"/> <lang-switch /></li>
                 <li class="animate__animated animate__zoomIn fast_animation_delay_1">
                   <router-link :to="{ name: 'about', params: { 'locale': $i18n.locale } }" exact>
                     {{ about.title }}
