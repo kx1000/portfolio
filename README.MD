@@ -1,4 +1,18 @@
-# Installation
+# Installation with docker
+
+1. `cp .env .env.local`
+2. `php7 composer.phar install`
+3. `docker-compose up -d`
+4. Database
+   1. Schema
+      - Update schema and load fixtures: `docker-compose exec app ./docker/refresh-db.sh`
+      - or only schema: `docker-compose exec app php bin/console doctrine:schema:update --dump-sql --force --complete`    
+   2. Admin account: `docker-compose exec app php bin/console app:add:user kacper.rogula@gmail.com password`
+
+
+Front: http://localhost:8082
+
+# Installation (deprecated)
 1. `composer install`
 2. `cp .env .env.local`
 3. `nano .env.local` - edit DATABASE_URL

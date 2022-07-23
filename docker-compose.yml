@@ -1,0 +1,48 @@
+version: '3.4'
+services:
+  database:
+    image: percona:5.7
+    container_name: ${CONTAINER_PREFIX}_database
+    volumes:
+      - database-data:/var/lib/mysql:rw
+    ports:
+      - '3307:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-nopassword}
+      - MYSQL_DATABASE=db_name
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-nopassword}
+  app:
+    container_name: ${CONTAINER_PREFIX}_app
+    build:
+      context: .
+      target: app
+    ports:
+      - '8082:80'
+    volumes:
+      - .:/var/www/html/symfony:rw,cached
+      - ./public:/var/www/html/symfony/public:rw,delegated
+      - public-media:/var/www/html/symfony/public/media:rw
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=mysql://user:nopassword@database/db_name
+  encore:
+    container_name: ${CONTAINER_PREFIX}_encore
+    build:
+      context: .
+      target: nodejs
+    volumes:
+      - './:/var/www/html/symfony'
+      - ./public:/var/www/html/symfony/public:rw,delegated
+    ports:
+      - '8080:8080'
+  adminer:
+    image: adminer
+    container_name: ${CONTAINER_PREFIX}_adminer
+    ports:
+      - 8090:8080
+
+volumes:
+  database-data:
+  public-media:
