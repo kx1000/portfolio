@@ -11,6 +11,7 @@
 
 
 Front: http://localhost:8082
+Admin: http://localhost:8082/admin
 
 # Installation (deprecated)
 1. `composer install`

@@ -10,14 +10,6 @@
       <div>
         <p class="hello">{{ about.welcome }}</p>
         <nl2br tag="p" :text="about.description" />
-        <a :href="about.cv" class="btn btn-default" target="_blank">
-          <span class="icon">
-            <font-awesome-icon icon="file-pdf" />
-          </span>
-          <span>
-            {{ $t('about.download') }}
-          </span>
-        </a>
         <a :href="about.linkedin" class="btn btn-default" target="_blank">
           <span class="icon">
             <font-awesome-icon :icon="['fab', 'linkedin']" />
