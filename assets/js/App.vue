@@ -18,11 +18,11 @@
                     {{ about.title }}
                   </router-link>
                 </li>
-                <li class="animate__animated animate__zoomIn fast_animation_delay_2">
-                  <router-link :to="{ name: 'projects', params: { 'locale': $i18n.locale } }">
-                    {{ projectsList.title }}
-                  </router-link>
-                </li>
+<!--                <li class="animate__animated animate__zoomIn fast_animation_delay_2">-->
+<!--                  <router-link :to="{ name: 'projects', params: { 'locale': $i18n.locale } }">-->
+<!--                    {{ projectsList.title }}-->
+<!--                  </router-link>-->
+<!--                </li>-->
                 <li class="animate__animated animate__zoomIn fast_animation_delay_3">
                   <router-link :to="{ name: 'contact', params: { 'locale': $i18n.locale } }">
                     {{ contact.title }}
