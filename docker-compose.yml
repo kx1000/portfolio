@@ -27,16 +27,6 @@ services:
       - database
     environment:
       - DATABASE_URL=mysql://user:nopassword@database/db_name
-  encore:
-    container_name: ${CONTAINER_PREFIX}_encore
-    build:
-      context: .
-      target: nodejs
-    volumes:
-      - './:/var/www/html/symfony'
-      - ./public:/var/www/html/symfony/public:rw,delegated
-    ports:
-      - '8080:8080'
   adminer:
     image: adminer
     container_name: ${CONTAINER_PREFIX}_adminer

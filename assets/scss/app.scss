@@ -104,7 +104,7 @@ a, button {
   display: grid;
   grid-template-rows: auto;
   grid-gap: 1em;
-  grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 3), 1fr) );
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .about-grid > div:first-child {
