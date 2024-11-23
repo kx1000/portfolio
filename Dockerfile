@@ -49,6 +49,7 @@ COPY --from=nodejs /usr/local/bin/node /usr/local/bin/node
 COPY --from=nodejs /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=nodejs /usr/local/bin/yarn /usr/local/bin/yarn
 COPY --from=nodejs /usr/local/bin/yarnpkg /usr/local/bin/yarnpkg
+COPY --from=nodejs /app/public/build /var/www/html/symfony/public/build
 
 # Create a symlink for `node` in `/usr/bin`
 RUN ln -s /usr/local/bin/node /usr/bin/node
