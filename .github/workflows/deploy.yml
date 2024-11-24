@@ -1,0 +1,19 @@
+name: Deploy DEV
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CAPROVER_URL: ${{ secrets.CAPROVER_URL }}
+      CAPROVER_PASSWORD: ${{ secrets.CAPROVER_PASSWORD }}
+      CAPROVER_APP_NAME: ${{ secrets.CAPROVER_APP_NAME }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install CapRover CLI
+        run: npm install -g caprover
+      - name: Deploy to CapRover
+        run: caprover deploy -h $CAPROVER_URL -p $CAPROVER_PASSWORD -a $CAPROVER_APP_NAME -b master

@@ -56,6 +56,9 @@ RUN ln -s /usr/local/bin/node /usr/bin/node
 
 RUN php composer.phar install --no-dev --optimize-autoloader
 
+RUN mkdir -p var/cache var/log var/cache/prod
+RUN chmod -R 777 var/cache var/log
+
 # Copy Symfony project files
 COPY . .
 
